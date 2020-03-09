@@ -76,19 +76,35 @@ public class Proceso implements Runnable{
                         //guardar cantidad transacciones
                         actualizarTransacciones(estacion.getId(), surtidor, cantTransacciones);
                         
-                        
                         /***
                          * INICIO RECIBIR TRANSACCIONES
                         ***/
+                        id_surtidor = buscarIdSurtidor(nombreEmpresa, surtidor);
                         
-                        // cantidad de transacciones
+                        // id combustible
                         bufferEntrada = new byte[1000];
                         socket.receive(msjEntrada);
                         temporal = new String(bufferEntrada);
                         temporal = temporal.trim();
-                        cantTransacciones = Integer.parseInt(temporal);
+                        id_combustible = Integer.parseInt(temporal);
                         
+                        // litros
+                        bufferEntrada = new byte[1000];
+                        socket.receive(msjEntrada);
+                        temporal = new String(bufferEntrada);
+                        temporal = temporal.trim();
+                        litros = Integer.parseInt(temporal);
                         
+                        // costo
+                        bufferEntrada = new byte[1000];
+                        socket.receive(msjEntrada);
+                        temporal = new String(bufferEntrada);
+                        temporal = temporal.trim();
+                        costo = Integer.parseInt(temporal);
+                        
+                        if(crearTransaccion(id_surtidor, id_combustible, litros, costo)) {
+                            System.out.println("transacción guardada");
+                        }
                         
                     }
                     
@@ -264,5 +280,23 @@ public class Proceso implements Runnable{
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
         return 0;
+    }
+    
+    public synchronized boolean crearTransaccion(int id_surtidor, int id_combustible, int litros, int costo) {
+        Statement stmt = null;
+         try {
+            Main.conn.setAutoCommit(false);
+   
+            stmt = Main.conn.createStatement();
+            String sql = "INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo) " +
+                           "VALUES ("+id_surtidor+", "+id_combustible+", "+litros+", "+costo+" );"; 
+            stmt.executeUpdate(sql);
+            stmt.close();
+            Main.conn.commit();
+            return true;
+         } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+         }
+         return false;
     }
 }
