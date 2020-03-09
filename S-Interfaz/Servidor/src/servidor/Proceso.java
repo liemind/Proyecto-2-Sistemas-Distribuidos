@@ -174,7 +174,7 @@ public class Proceso implements Runnable{
             if(n == 0) {
                 //crear Estacion
                 String sql = "INSERT INTO estacion (nombre) " +
-                               "VALUES ("+nombreE+" );"; 
+                               "VALUES ('"+nombreE+"' );"; 
                 stmt.executeUpdate(sql);
                 //por la id
                 n = buscarEstacion(nombreE);
@@ -220,7 +220,7 @@ public class Proceso implements Runnable{
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
             //consultar estacion
-            ResultSet rs = stmt.executeQuery("SELECT * FROM estacion WHERE nombre = "+nombreE+";");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM estacion WHERE nombre = '"+nombreE+"';");
             
             while ( rs.next() ) {
                n = rs.getString("nombre");
