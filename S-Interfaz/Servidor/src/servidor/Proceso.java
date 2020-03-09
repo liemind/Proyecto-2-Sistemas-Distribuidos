@@ -32,6 +32,9 @@ public class Proceso implements Runnable{
     
     @Override
     public void run() {
+        //Estacion estacion = crearEstacion("/25.16.98.11");
+        //System.out.println("la id de la estacion 25.16.98.10 es: " + buscarEstacion("25.16.98.11"));
+        
         if(id == 0) {
             int cantTransacciones, id_surtidor, surtidor, id_combustible, litros, costo;
             /**********************
@@ -53,7 +56,7 @@ public class Proceso implements Runnable{
                     temporal = temporal.trim();
                     //pregunta al usuario si hay transacciones
                     int transacciones = Integer.parseInt(temporal);
-                    
+                    System.out.println("transaccion: "+transacciones);
                     //crea la estacion para recibir la transacción
                     String nombreEmpresa = msjEntrada.getAddress().toString();
                     Estacion estacion = crearEstacion(nombreEmpresa);
@@ -161,48 +164,55 @@ public class Proceso implements Runnable{
         }
     }
     
-    public synchronized Estacion crearEstacion(String nombreE) {
+    public synchronized Estacion crearEstacion(String nombreEs) {
+        String nombreE = nombreEs.split("/")[1];
         Statement stmt = null;
-        int n = 0;
+        int idEstacion = 0;
         Estacion es = null;
         try {
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
             //consultar estacion
-            
-            n = buscarEstacion(nombreE);
-            if(n == 0) {
+            //n = buscarEstacion(nombreE);
+            //System.out.println("n: " + n);
+            if(existeEstacion(nombreE)) {
+                System.out.println("entro a crear la ip");
                 //crear Estacion
-                String sql = "INSERT INTO estacion (nombre) " +
-                               "VALUES ("+nombreE+" );"; 
+                String sql = "INSERT INTO estacion (nombre) VALUES ('"+nombreE+"');"; 
                 stmt.executeUpdate(sql);
+                System.out.println("Paso consulta -1");
                 //por la id
-                n = buscarEstacion(nombreE);
                 
+                idEstacion = buscarEstacion(nombreE);
+                System.out.println("la id de la estacion creada es: " + idEstacion);
                 
                 //ESTACIONES
                 sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+n+",1,0 );";
+                           "VALUES ("+idEstacion+",1,0 );";
+                stmt.executeUpdate(sql);
+                
+                
+                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
+                           "VALUES ("+idEstacion+",2,0 );";
+                stmt.executeUpdate(sql);
+                
+                
+                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
+                           "VALUES ("+idEstacion+",3,0 );";
                 stmt.executeUpdate(sql);
                 
                 sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+n+",2,0 );";
-                stmt.executeUpdate(sql);
-                
-                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+n+",3,0 );";
-                stmt.executeUpdate(sql);
-                
-                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+n+",4,0 );";
+                           "VALUES ("+idEstacion+",4,0 );";
                 stmt.executeUpdate(sql);
                 
                 es = new Estacion(nombreE);
-                es.setId(n);
+                es.setId(idEstacion);
+                System.out.println("Fin if");
             }
             
             stmt.close();
             Main.conn.commit();
+            System.out.println("salio de crear estacion");
             return es;
         } 
         catch ( SQLException e ) {
@@ -211,34 +221,96 @@ public class Proceso implements Runnable{
         return null;
     }
     
-    public synchronized int buscarEstacion(String nombreE) {
+    public synchronized boolean existeEstacion(String nombreE) {
         Statement stmt = null;
-        String n = new String();
-        int number = 0;
-        
         try {
+            
+            //consultar estacion
+            String sql = "SELECT count(*) FROM estacion WHERE nombre = '"+nombreE+"';";
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
-            //consultar estacion
-            ResultSet rs = stmt.executeQuery("SELECT * FROM estacion WHERE nombre = "+nombreE+";");
+            ResultSet rs    = stmt.executeQuery(sql);
             
-            while ( rs.next() ) {
-               n = rs.getString("nombre");
-            }
-            
-            if(!n.isEmpty()) {
-                number = rs.getInt("id");
+            int cantIP = 0; /*Representa a la cantidad de ip's que esta en la base de datos que son iguales a la nombreE*/
+            while(rs.next()) {
+                cantIP = rs.getInt("count(*)");
+                System.out.println("Cantidad de ips: " + cantIP);
             }
             rs.close();
             stmt.close();
             Main.conn.commit();
-            return number;
+            
+            if (cantIP==0)
+            {
+                return true;
+            }
+            
+            return false;
             
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        return 0;
+        return false;
     }
+    
+    
+    public synchronized int buscarEstacion(String nombreE) {
+        Statement stmt = null;
+        int idEstacion = 0;
+        
+        try {
+            
+            //consultar estacion
+            String sql = "SELECT id, nombre FROM estacion WHERE nombre = '"+nombreE+"';";
+            Main.conn.setAutoCommit(false);
+            stmt = Main.conn.createStatement();
+            ResultSet rs    = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                idEstacion = rs.getInt("id");
+                System.out.println("id: " + idEstacion);
+            }
+            rs.close();
+            stmt.close();
+            System.out.println("id2.0: " + idEstacion);
+            Main.conn.commit();
+            return idEstacion;
+
+            // loop through the result set
+
+            /*while (rs.next()) {
+                n = rs.getString("nombre");
+                System.out.println("n: " + n + " id: " + rs.getInt("id"));
+            }*/
+            //System.out.println("n: " + n + " id: " + rs.getInt("id"));
+
+            
+            /*ResultSet rs = stmt.executeQuery("SELECT * FROM estacion WHERE nombre = '"+nombreE+"';");
+            System.out.println("ResultSet: " + rs.getInt("id"));
+            System.out.println("paso la consulta de buscarEstacion");
+            while ( rs.next() ) {
+               n = rs.getString("nombre");
+            }*/
+            
+            /*if(!n.isEmpty()) {
+                number = rs.getInt("id");
+            }*/
+            
+            
+            
+            
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        System.out.println("paso por fuera");
+        return -1;
+    }
+    
+    
+    
+    
+    
+    
     
     public synchronized boolean actualizarTransacciones(int id, int surtidor, int trans) {
         Statement stmt = null;
@@ -266,7 +338,7 @@ public class Proceso implements Runnable{
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
             //consultar estacion
-            ResultSet rs = stmt.executeQuery("SELECT id FROM surtidor WHERE id_estacion = "+nombreE+" AND id_numero_surtidor "+surtidor+";");
+            ResultSet rs = stmt.executeQuery("SELECT id FROM surtidor WHERE id_estacion = '"+nombreE+"' AND id_numero_surtidor "+surtidor+";");
             
             while ( rs.next() ) {
                number = rs.getInt("id");
