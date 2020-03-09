@@ -5,24 +5,15 @@
  */
 package servidor;
 
-import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 /**
  *
  * @author Liemind
  */
-public class Proceso extends Application implements Runnable{
+public class Proceso implements Runnable{
     private int id;
-    private String[] args;
     
-    public Proceso(int id, String[] args) {
+    public Proceso(int id) {
         this.id = id;
-        this.args = args;
     }
     
     @Override

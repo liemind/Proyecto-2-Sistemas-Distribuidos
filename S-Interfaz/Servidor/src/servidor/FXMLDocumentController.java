@@ -7,6 +7,8 @@ package servidor;
 
 import Model.Combustible;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,6 +34,24 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        //Obtener combustibles
+        ArrayList<Combustible> cc = obtenerCombustibles();
+        //Setear combustibles.
+        noventaytres.setText(Integer.toString(cc.get(0).getCosto()));
+        noventaycinco.setText(Integer.toString(cc.get(1).getCosto()));
+        noventaysiete.setText(Integer.toString(cc.get(2).getCosto()));
+        diesel.setText(Integer.toString(cc.get(3).getCosto()));
+        kerosene.setText(Integer.toString(cc.get(4).getCosto()));
+        
+        
+        int surtidor = 2;
+        Thread[]threads = new Thread[surtidor];
+        
+        for (int i = 0; i < surtidor; i++) {
+            threads[i] = new Thread(new Proceso(i));
+            threads[i].start();
+        }
     }
     
     public void cambiarNumero() {
@@ -112,4 +132,30 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    /**
+     * Obtiene de la base de datos los combustibles del servidor.
+     * @return una lista de combustibles con sus precios respectivos.
+     */
+    public synchronized ArrayList<Combustible> obtenerCombustibles() {
+        Statement stmt = null;
+        try {
+            ArrayList<Combustible> combustibles = new ArrayList<>();
+            stmt = Main.conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM combustible;");
+
+            while ( rs.next() ) {
+               Combustible combustible = new Combustible( rs.getString("nombre") , rs.getInt("costo") );
+               combustible.setId(rs.getInt("id"));
+               combustibles.add(combustible);
+            }
+            //end bandera
+            rs.close();
+            stmt.close();
+            return combustibles;
+
+        }catch(Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return null;
+        }
+     }
 }

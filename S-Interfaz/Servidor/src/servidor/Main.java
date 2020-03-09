@@ -17,25 +17,31 @@ import javafx.stage.Stage;
  *
  * @author Liemind
  */
-public class Main {
+public class Main extends Application {
     //string de conección de la bd
      static public Connection conn;
     
-    
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        //Agrega un titulo a la ventana
+        stage.setTitle("Empresa Popec");
+        //Hace la ventana no redimensionable
+        stage.setResizable(false);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException{
-        int surtidor = 1;
         conn = conectar();
-        Thread[]threads = new Thread[surtidor];
-        
-        for (int i = 0; i < surtidor; i++) {
-            threads[i] = new Thread(new Proceso(i,args));
-            threads[i].start();
-        }
-        
+        launch(args);
     }
     
     /**
@@ -44,7 +50,7 @@ public class Main {
    */
    public static Connection conectar() {
         Connection c = null;
-        String url = "C:\\Users\\Liemind\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Unidad 2\\Proyecto 2\\S-Interfaz\\Servidor\\empresa.db";
+        String url = "C:\\Users\\Liemind\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Unidad 2\\Proyecto 2\\Proyecto 2 Sistemas Distribuidos\\S-Interfaz\\Servidor\\empresa.db";
         try {
            Class.forName("org.sqlite.JDBC");
            c = DriverManager.getConnection("jdbc:sqlite:"+url);

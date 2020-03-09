@@ -20,14 +20,14 @@ public class Proceso implements Runnable{
     
     @Override
     public void run() {
-        
+        while(true) {
             if(id == 0) {
                 System.out.println("Proceso 0");
             }
             else if(id == 1) {
                 System.out.println("Proceso 1");
             }
-        
+        }
     }
     
     

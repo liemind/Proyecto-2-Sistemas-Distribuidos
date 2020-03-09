@@ -8,12 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Servidor.jar" size="8337" download="eager" />
+    <jar href="Servidor.jar" size="9126" download="eager" />
     <jar href="lib\sqlite-jdbc-3301.jar" size="6096861" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Servidor" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="servidor.Proceso"  name="Servidor" />
+  <jfx:javafx-desc  width="800" height="600" main-class="servidor.Main"  name="Servidor" />
   <update check="always"/>
 </jnlp>
