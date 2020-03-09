@@ -5,6 +5,14 @@
  */
 package servidor;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
+
 /**
  *
  * @author Liemind
@@ -18,14 +26,44 @@ public class Proceso implements Runnable{
     
     @Override
     public void run() {
-        while(true) {
-            if(id == 0) {
-                System.out.println("Proceso 0");
-                
+        if(id == 0) {
+            /**********************
+             * CONEXION
+             */
+            try {
+                InetAddress ip = InetAddress.getByName("25.6.57.186");
+                DatagramSocket socket = new DatagramSocket(10500);
+                int suma = 0;
+
+                while(true)
+                {
+                    byte[] bufferEntrada = new byte[1000];
+                    DatagramPacket msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
+                    socket.receive(msjEntrada);
+
+                    String numeroString = new String(bufferEntrada);
+                    numeroString = numeroString.trim();
+                    int numero = Integer.parseInt(numeroString);
+                    suma +=numero;
+
+                    System.out.println("El numero acumulado es: " + suma);
+
+                    numeroString = Integer.toString(suma);
+
+
+                    byte[] bufferSalida = numeroString.getBytes();
+                    DatagramPacket msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, msjEntrada.getAddress(), msjEntrada.getPort());
+                    socket.send(msjSalida);
+                }
+            } catch (IOException | NumberFormatException e) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             }
-            else if(id == 1) {
-                System.out.println("Proceso 1");
+            /**********************
+             * CONEXION
+             */
             }
+        else if(id == 1) {
+            System.out.println("Proceso 1");
         }
     }
 }

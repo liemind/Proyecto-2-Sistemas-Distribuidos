@@ -19,7 +19,9 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     //string de conección de la bd
-     static public Connection conn;
+    static public Connection conn;
+    //estatus 1: en espera, 0: escuchando
+    static public int status = 0;
     
     @Override
     public void start(Stage stage) throws Exception {
