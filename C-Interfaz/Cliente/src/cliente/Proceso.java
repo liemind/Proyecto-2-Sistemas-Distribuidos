@@ -40,7 +40,7 @@ public class Proceso implements Runnable{
              */
             try {
                 DatagramSocket socket = new DatagramSocket();
-                InetAddress ip = InetAddress.getByName("localhost");
+                InetAddress ip = InetAddress.getByName("25.6.57.186");
                 //enviar si hay o no transacción
                 int numero = Main.status;
                 String numeroString = Integer.toString(numero);

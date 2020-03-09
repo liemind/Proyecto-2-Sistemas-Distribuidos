@@ -66,6 +66,7 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.combustibles = new ArrayList<>();
         // TODO
         llenarSurtidor();
         //obtener combustible
@@ -91,14 +92,13 @@ public class FXMLDocumentController implements Initializable {
     public synchronized void obtenerCombustibles() {
         Statement stmt = null;
         try {
-            ArrayList<Combustible> combustibles = new ArrayList<>();
             stmt = Main.conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM combustible;");
 
             while ( rs.next() ) {
-               Combustible combustible = new Combustible( rs.getString("nombre") , rs.getInt("costo") );
-               combustible.setId(rs.getInt("id"));
-               combustibles.add(combustible);
+               Combustible cc = new Combustible( rs.getString("nombre") , rs.getInt("costo") );
+               cc.setId(rs.getInt("id"));
+               combustibles.add(cc);
             }
             //end bandera
             rs.close();
@@ -114,7 +114,6 @@ public class FXMLDocumentController implements Initializable {
      */
     private void llenarSurtidor() {
         //surtidor = new ComboBox();
-        
         surtidor.getItems().add("1");
         surtidor.getItems().add("2");
         surtidor.getItems().add("3");
