@@ -1,0 +1,190 @@
+/* DarkCSS */
+/* Colors
+
+LinkColor #0095C8
+Background #111111
+Button/Bar # ¿?
+Button/Bar-Hover #2a2a2a
+TextFields #FFFFFF
+TextColorLight #FFFFFF
+TextColorDark #000000
+SelectedMenuBarColor #<A gusto>
+MenuBarColor #000000
+
+ArbitratyBackground #1a1a1a
+*/
+
+.mainFxmlClass {
+
+}
+
+.button{
+    -fx-padding: 5 12 5 12;   
+    -fx-border-color: #1a1a1a;
+    -fx-border-width: 0;
+
+    -fx-background-radius: 0;
+
+    -fx-background-color: #1a1a1a;
+  
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:hover{
+    -fx-background-color: #2a2a2a;
+}
+
+.text-field{
+    -fx-border-width: 0;
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 0;
+    -fx-background-color: #FFFFFF;
+}
+
+.label{
+    -fx-background-fills: #FFFFFF;
+    -fx-fill: #FFFFFF;
+    -fx-text-fill: #FFFFFF;
+}
+
+.label-BLUE{
+    -fx-background-fills: #81DAF5;
+    -fx-fill: #81DAF5;
+    -fx-text-fill: #81DAF5;
+}
+
+.link-buttonA{
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #1a1a1a;
+    -fx-padding: 0 0 0 0;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 9.5pt;
+    -fx-text-fill: greenyellow;
+    -fx-tick-label-fill: green;
+}
+
+.link-buttonA:hover{
+    -fx-text-fill: blueviolet;
+    -fx-background-color: #1a1a1a;
+    -fx-underline: true;
+}
+
+.root{
+    -fx-background-color: #111111;
+}
+
+.combo-box{
+    -fx-border-width: 0;
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 0;
+    -fx-background-color: #FFFFFF;
+}
+
+.combo-box.list-cell{
+    -fx-border-width: 0;
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 0;
+    -fx-background-color: #FFFFFF;
+}
+
+.check-box *.box{
+    -fx-border-width: 0;
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 0;
+    -fx-background-color: #FFFFFF;
+}
+
+.hyperlink{
+    -fx-border-width: 0;
+    -fx-underline: false;
+}
+
+.hyperlink:hover{
+    -fx-opacity: 0.7;
+}
+
+.hyperlink:disabled{
+    -fx-opacity: 1;
+    text-decoration-color: #0095c8;
+    text-decoration: none;
+    -fx-text-fill: #0095c8;
+    
+}
+
+.table-view {
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 20;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color: 
+        transparent
+        transparent
+        derive(-fx-base, 80%) 
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+    
+}
+
+.date-picker {
+    -fx-background-insets: 1 0 1 1;
+    -fx-border-width: 1;
+    -fx-border-color: #1d1d1d;
+    -fx-background-radius: 0;
+}
+
+.date-picker:focused {
+    -fx-border-color: #1d1d1d;
+    -fx-border-width: 1;
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: #1d1d1d;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.table-view_ranking {
+    -fx-base: rgb(17,17,17);
+    -fx-control-inner-background: rgb(17,17,17);
+    -fx-background-color: rgb(17,17,17);
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 0;
+    -fx-font-size: 14px;
+}
+
+.titulo {
+    -fx-background-color: #1a1a1a;
+}
+
+.h1 {
+    -fx-font-size: 18px; 
+}
