@@ -52,7 +52,7 @@ public class Main extends Application {
    */
    public static Connection conectar() {
         Connection c = null;
-        String url = "C:\\Users\\Liemind\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Unidad 2\\Proyecto 2\\Proyecto 2 Sistemas Distribuidos\\S-Interfaz\\Servidor\\empresa.db";
+        String url = "D:\\Repositorios\\Proyecto-2-Sistemas-Distribuidos\\S-Interfaz\\Servidor\\empresa.db";
         try {
            Class.forName("org.sqlite.JDBC");
            c = DriverManager.getConnection("jdbc:sqlite:"+url);
