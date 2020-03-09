@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     //string de conección de la bd
     static public Connection conn;
-    //estatus 1: en espera, 0: escuchando
+    //estatus 1: algo para enviar, 0: no hay nada
     static public int status = 0;
     
     @Override
