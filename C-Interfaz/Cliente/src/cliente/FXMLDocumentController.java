@@ -51,10 +51,22 @@ public class FXMLDocumentController implements Initializable {
                     finalLitros = Integer.parseInt(ltr);
                     cc = buscarCombustible(finalCombustible);
                     costo = finalLitros * cc.getCosto();
-                    if(crearTransaccion(Integer.getInteger(finalSurtidor), cc.getId(), finalLitros, costo)) {
+                    
+                    //bandera
+                        System.out.println("TRANSACCION: "+finalSurtidor+" ,"+finalCombustible+","+ltr);
+                        System.out.println("Combustible: "+cc.getNombre()+", "+cc.getCosto()+"["+cc.getId()+"]");
+                    //end bandera
+                    
+                    boolean transaccionCreada = crearTransaccion(Integer.parseInt(finalSurtidor), cc.getId(), finalLitros, costo);
+                    
+                    if(transaccionCreada) {
                         total.setText(Integer.toString(costo));
                         guardarSurtidor(Integer.getInteger(finalSurtidor));
                         Main.surtidor = Integer.getInteger(finalSurtidor);
+                        
+                        //bandera
+                        System.out.println("Surtidor: "+finalSurtidor);
+                        //end bandera
                     }
                 }
                 else {
@@ -161,20 +173,28 @@ public class FXMLDocumentController implements Initializable {
      * @param costo
      * @return
      */
-    public Boolean crearTransaccion(int idSurtidor, int idCombustible, int litros, int costo) {
+    public boolean crearTransaccion(int idSurtidor, int idCombustible, int litros, int costo) {
          Statement stmt = null;
          try {
-            Main.conn.setAutoCommit(false);
+            Main.conn.setAutoCommit(false);  
+            //bandera
+                System.out.println("Transaccion: "+idSurtidor+","+idCombustible+","+litros+","+costo);
+            //end bandera
    
             stmt = Main.conn.createStatement();
-            String sql = "INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo) " +
-                           "VALUES ("+idSurtidor+", "+idCombustible+", "+litros+", "+costo+" );"; 
+            String sql = "INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo) VALUES ("+idSurtidor+", "+idCombustible+", "+litros+", "+costo+" );"; 
             stmt.executeUpdate(sql);
             stmt.close();
             Main.conn.commit();
+            //bandera
+                System.out.println("Crea la transaccion");
+            //end bandera
             return true;
          } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            //bandera
+                System.out.println("No crea la transaccion");
+            //end bandera
             return false;
          }
 

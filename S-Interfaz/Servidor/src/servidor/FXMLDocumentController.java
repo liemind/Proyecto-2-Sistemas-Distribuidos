@@ -98,11 +98,14 @@ public class FXMLDocumentController implements Initializable {
             finalc.add(c);
         }
         
-        for (Combustible combustible : finalc) {
+        
+        if(!finalc.isEmpty()) {
+            for (Combustible combustible : finalc) {
             combustible.save(Main.conn);
+            }
+            Main.status = 1;
+            
         }
-        
-        
         
     }
     
