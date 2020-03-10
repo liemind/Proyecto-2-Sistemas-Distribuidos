@@ -57,7 +57,7 @@
                      </padding>
                      <children>
                         <Label text="Total :" />
-                        <Label fx:id="total" prefHeight="17.0" prefWidth="103.0" GridPane.columnIndex="1" />
+                        <Label fx:id="total" prefHeight="17.0" prefWidth="103.0" styleClass="label-BLUE" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <ComboBox fx:id="surtidor" prefHeight="25.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

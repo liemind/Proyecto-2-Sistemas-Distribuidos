@@ -10,8 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -22,8 +20,9 @@ import java.sql.DriverManager;
 public class Main extends Application {
     //string de conección de la bd
     static public Connection conn;
-    //estatus 1: en espera, 0: escuchando
+    //estatus 1: hay transacciones, 0: no hay transacciones
     static public int status = 0;
+    static public int surtidor;
     
     @Override
     public void start(Stage stage) throws Exception {

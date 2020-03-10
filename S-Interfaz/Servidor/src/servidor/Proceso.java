@@ -41,25 +41,47 @@ public class Proceso implements Runnable{
              * CONEXION
              */
             try {
-                InetAddress ip = InetAddress.getByName("25.6.57.186");
+                InetAddress ip = InetAddress.getByName("localhost");
                 DatagramSocket socket = new DatagramSocket(10500);
                 int suma = 0;
 
                 while(true)
                 {                    
-                    byte[] bufferEntrada, bufferSalida;
+                    byte[] bufferEntrada, bufferSalida;                    
                     
+                    //envia al usuario que existen cambios en el combustible
+                    bufferSalida = Integer.toString( Main.status ).getBytes();
+                    DatagramPacket msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
+                    socket.send(msjSalida);
+                    
+                    //oremos
+                    if(Main.status == 1) {
+                        //envia al usuario los precios actuales del combustible EN ORDEN
+                        for (int i = 0; i < cc.size(); i++) {
+                            bufferSalida = Integer.toString( cc.get(i).getCosto() ).getBytes();
+                            msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
+                            socket.send(msjSalida);
+                        }
+                        Main.status = 0;
+                    }
+                    
+                    
+                    //pregunta al usuario si hay transacciones
                     bufferEntrada = new byte[1000];
                     DatagramPacket msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
                     socket.receive(msjEntrada);
                     String temporal = new String(bufferEntrada);
                     temporal = temporal.trim();
-                    //pregunta al usuario si hay transacciones
+                    
                     int transacciones = Integer.parseInt(temporal);
                     System.out.println("transaccion: "+transacciones);
                     //crea la estacion para recibir la transacción
                     String nombreEmpresa = msjEntrada.getAddress().toString();
                     Estacion estacion = crearEstacion(nombreEmpresa);
+                    
+                    //bandera
+                    System.out.println("Estacion: "+estacion.getNombre());
+                    //end bandera
                     
                     if(transacciones == 1) {
                         // cantidad de transacciones
@@ -113,16 +135,7 @@ public class Proceso implements Runnable{
                     
                     
                     
-                    //oremos
-                    if(Main.status == 1) {
-                        //envia al usuario los precios actuales del combustible EN ORDEN
-                        for (int i = 0; i < cc.size(); i++) {
-                            bufferSalida = Integer.toString( cc.get(i).getCosto() ).getBytes();
-                            DatagramPacket msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, msjEntrada.getAddress(), msjEntrada.getPort());
-                            socket.send(msjSalida);
-                        }
-                        Main.status = 0;
-                    }
+                    
                     
                 }
             } catch (IOException | NumberFormatException e) {
