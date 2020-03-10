@@ -43,7 +43,7 @@ public class Proceso implements Runnable{
              * CONEXION
              */
             try {
-                InetAddress ip = InetAddress.getByName("localhost");
+                InetAddress ip = InetAddress.getByName("25.95.144.139");
                 DatagramSocket socket = new DatagramSocket(10500);
                 DatagramPacket msjEntrada, msjSalida;
                 int suma = 0;
@@ -57,6 +57,8 @@ public class Proceso implements Runnable{
                     temporal = new String(bufferEntrada);
                     temporal = temporal.trim();
                     Main.status = Integer.parseInt(temporal);
+                    
+                    System.out.println("Status: "+Main.status);
                     
                     if (Main.status == 1) {
                         //hay conexion
