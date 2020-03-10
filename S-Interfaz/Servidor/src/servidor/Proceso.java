@@ -44,9 +44,7 @@ public class Proceso implements Runnable{
                 InetAddress ip = InetAddress.getByName("localhost");
                 DatagramSocket socket = new DatagramSocket(10500);
                 int suma = 0;
-
-                while(true)
-                {                    
+                 
                     byte[] bufferEntrada, bufferSalida;                    
                     
                     //envia al usuario que existen cambios en el combustible
@@ -132,12 +130,6 @@ public class Proceso implements Runnable{
                         }
                         
                     }
-                    
-                    
-                    
-                    
-                    
-                }
             } catch (IOException | NumberFormatException e) {
                 System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             }
