@@ -36,97 +36,79 @@ public class Proceso implements Runnable{
         //System.out.println("la id de la estacion 25.16.98.10 es: " + buscarEstacion("25.16.98.11"));
         
         if(id == 0) {
-            int cantTransacciones, id_surtidor, surtidor, id_combustible, litros, costo;
+            int cantTransacciones, id_surtidor, surtidor, id_combustible, litros, costo, status;
+            String temporal;
+            
             /**********************
              * CONEXION
              */
             try {
                 InetAddress ip = InetAddress.getByName("localhost");
                 DatagramSocket socket = new DatagramSocket(10500);
+                DatagramPacket msjEntrada, msjSalida;
                 int suma = 0;
                  
-                    byte[] bufferEntrada, bufferSalida;                    
+                    byte[] bufferEntrada, bufferSalida;
                     
-                    //envia al usuario que existen cambios en el combustible
-                    bufferSalida = Integer.toString( Main.status ).getBytes();
-                    DatagramPacket msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                    socket.send(msjSalida);
-                    
-                    //oremos
-                    if(Main.status == 1) {
-                        //envia al usuario los precios actuales del combustible EN ORDEN
-                        for (int i = 0; i < cc.size(); i++) {
-                            bufferSalida = Integer.toString( cc.get(i).getCosto() ).getBytes();
-                            msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                            socket.send(msjSalida);
-                        }
-                        Main.status = 0;
-                    }
-                    
-                    
-                    //pregunta al usuario si hay transacciones
+                    //recibe la conexion usando un status de conexion
                     bufferEntrada = new byte[1000];
-                    DatagramPacket msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
+                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
                     socket.receive(msjEntrada);
-                    String temporal = new String(bufferEntrada);
+                    temporal = new String(bufferEntrada);
                     temporal = temporal.trim();
+                    Main.status = Integer.parseInt(temporal);
                     
-                    int transacciones = Integer.parseInt(temporal);
-                    System.out.println("transaccion: "+transacciones);
-                    //crea la estacion para recibir la transacción
-                    String nombreEmpresa = msjEntrada.getAddress().toString();
-                    Estacion estacion = crearEstacion(nombreEmpresa);
-                    
-                    //bandera
-                    System.out.println("Estacion: "+estacion.getNombre());
-                    //end bandera
-                    
-                    if(transacciones == 1) {
-                        // cantidad de transacciones
+                    if (Main.status == 1) {
+                        //hay conexion
+                        
+                        //envia al usuario los precios actuales del combustible EN ORDEN
+                        temporal = new String();
+                        temporal = cc.get(0)+","+cc.get(1)+","+cc.get(2)+","+cc.get(3)+","+cc.get(4);
+                        bufferSalida = temporal.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
+                        socket.send(msjSalida);
+                        
+                        //crea la estacion para recibir la transacción
+                        String nombreEmpresa = msjEntrada.getAddress().toString();
+                        Estacion estacion = crearEstacion(nombreEmpresa);
+                        
+                        //pregunta al usuario si hay transacciones
                         bufferEntrada = new byte[1000];
+                        msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
                         socket.receive(msjEntrada);
                         temporal = new String(bufferEntrada);
                         temporal = temporal.trim();
-                        cantTransacciones = Integer.parseInt(temporal);
+                        int transacciones = Integer.parseInt(temporal);
                         
-                        //numero del surtidor ese
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        surtidor = Integer.parseInt(temporal);
-                        
-                        //guardar cantidad transacciones
-                        actualizarTransacciones(estacion.getId(), surtidor, cantTransacciones);
-                        
-                        /***
-                         * INICIO RECIBIR TRANSACCIONES
-                        ***/
-                        id_surtidor = buscarIdSurtidor(nombreEmpresa, surtidor);
-                        
-                        // id combustible
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        id_combustible = Integer.parseInt(temporal);
-                        
-                        // litros
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        litros = Integer.parseInt(temporal);
-                        
-                        // costo
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        costo = Integer.parseInt(temporal);
-                        
-                        if(crearTransaccion(id_surtidor, id_combustible, litros, costo)) {
-                            System.out.println("transacción guardada");
+                        if(transacciones == 1) {
+                            // cantidad de transacciones
+                            bufferEntrada = new byte[1000];
+                            socket.receive(msjEntrada);
+                            temporal = new String(bufferEntrada);
+                            temporal = temporal.trim();
+                            
+                            String[] arrtrans = temporal.split(",", 2);
+                            surtidor = Integer.parseInt(arrtrans[0]);
+                            cantTransacciones = Integer.parseInt(arrtrans[1]);
+                            //guardar cantidad transacciones
+                            actualizarTransacciones(estacion.getId(), surtidor, cantTransacciones);
+                            
+                            /***
+                            * INICIO RECIBIR TRANSACCIONES
+                            ***/
+                            id_surtidor = buscarIdSurtidor(nombreEmpresa, surtidor);
+                            
+                            bufferEntrada = new byte[1000];
+                            socket.receive(msjEntrada);
+                            temporal = new String(bufferEntrada);
+                            temporal = temporal.trim();
+                            arrtrans = temporal.split(",");
+                            id_combustible = Integer.parseInt(arrtrans[0]);
+                            litros = Integer.parseInt(arrtrans[1]);
+                            costo = Integer.parseInt(arrtrans[2]);
+                            if(crearTransaccion(id_surtidor, id_combustible, litros, costo)) {
+                                System.out.println("transacción guardada");
+                            }
                         }
                         
                     }
@@ -178,8 +160,6 @@ public class Proceso implements Runnable{
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
             //consultar estacion
-            //n = buscarEstacion(nombreE);
-            //System.out.println("n: " + n);
             if(existeEstacion(nombreE)) {
                 System.out.println("entro a crear la ip");
                 //crear Estacion
