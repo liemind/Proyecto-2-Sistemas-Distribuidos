@@ -13,7 +13,6 @@ import java.net.InetAddress;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -65,6 +64,8 @@ public class Proceso implements Runnable{
                     datos.add(Integer.parseInt(datosString[i]));
                     System.out.println("bencina: " + datosString[i]);
                 }
+                guardarCombustible(datos);
+                
                 boolean validar = true;
                 while(validar)
                 {
