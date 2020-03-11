@@ -16,11 +16,6 @@ public class Estacion {
     public Estacion(String nombre) {
         this.nombre = nombre;
     }
-    
-    public Estacion(String nombre, int id) {
-        this.nombre = nombre;
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
