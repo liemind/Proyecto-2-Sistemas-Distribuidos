@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Cliente.jnlp">
+  <information>
+    <title>Cliente</title>
+    <vendor>Liemind</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Cliente.jar" size="12798" download="eager" />
+    <jar href="lib\sqlite-jdbc-3301.jar" size="6096861" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Cliente" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="cliente.Main"  name="Cliente" />
+  <update check="always"/>
+</jnlp>

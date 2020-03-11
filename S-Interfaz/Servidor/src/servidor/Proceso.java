@@ -21,58 +21,73 @@ import java.util.ArrayList;
  *
  * @author Liemind
  */
-public class Proceso implements Runnable{
+public class Proceso implements Runnable
+{
     private int id;
     private ArrayList<Combustible> cc;
     
-    public Proceso(int id) {
+    public Proceso(int id) 
+    {
         this.id = id;
         this.cc = new ArrayList<>();
     }
     
     @Override
-    public void run() {
+    public void run() 
+    {
         //Estacion estacion = crearEstacion("/25.16.98.11");
         //System.out.println("la id de la estacion 25.16.98.10 es: " + buscarEstacion("25.16.98.11"));
         
-        if(id == 0) {
-            int cantTransacciones, id_surtidor, surtidor, id_combustible, litros, costo, status;
+        if(id == 0) 
+        {
+            int cantTransacciones, id_surtidor, surtidor, id_combustible, litros, costo;
             String temporal;
             
             /**********************
              * CONEXION
              */
-            try {
-                InetAddress ip = InetAddress.getByName("25.95.144.139");
+            try 
+            {
+                //InetAddress ip = InetAddress.getByName("25.6.57.186");
                 DatagramSocket socket = new DatagramSocket(10500);
                 DatagramPacket msjEntrada, msjSalida;
-                int suma = 0;
-                 
+                while(true)
+                {
                     byte[] bufferEntrada, bufferSalida;
+                    System.err.println("line 52");
                     
                     //recibe la conexion usando un status de conexion
                     bufferEntrada = new byte[1000];
-                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
+                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
+                    System.out.println("line 57");
                     socket.receive(msjEntrada);
+                    System.out.println("line 59 ");
                     temporal = new String(bufferEntrada);
                     temporal = temporal.trim();
                     Main.status = Integer.parseInt(temporal);
                     
                     System.out.println("Status: "+Main.status);
                     
-                    if (Main.status == 1) {
+                    if (Main.status == 1) 
+                    {
                         //hay conexion
+                        cc = obtenerCombustibles();
                         
                         //envia al usuario los precios actuales del combustible EN ORDEN
-                        temporal = new String();
-                        temporal = cc.get(0)+","+cc.get(1)+","+cc.get(2)+","+cc.get(3)+","+cc.get(4);
+                        temporal = null;
+                        temporal = Integer.toString(cc.get(0).getCosto())+","+Integer.toString(cc.get(1).getCosto())+","+Integer.toString(cc.get(2).getCosto())+","+Integer.toString(cc.get(3).getCosto())+","+Integer.toString(cc.get(4).getCosto());
+                        System.out.println("t: "+temporal);
                         bufferSalida = temporal.getBytes();
-                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, msjEntrada.getAddress(), msjEntrada.getPort());
                         socket.send(msjSalida);
+                        
+                        System.out.println("envio combustibles");
                         
                         //crea la estacion para recibir la transacción
                         String nombreEmpresa = msjEntrada.getAddress().toString();
                         Estacion estacion = crearEstacion(nombreEmpresa);
+                        
+                        System.out.println("creo estacion");
                         
                         //pregunta al usuario si hay transacciones
                         bufferEntrada = new byte[1000];
@@ -81,6 +96,8 @@ public class Proceso implements Runnable{
                         temporal = new String(bufferEntrada);
                         temporal = temporal.trim();
                         int transacciones = Integer.parseInt(temporal);
+                        
+                        System.out.println("cliente envio confirmacion: "+transacciones);
                         
                         if(transacciones == 1) {
                             // cantidad de transacciones
@@ -112,16 +129,19 @@ public class Proceso implements Runnable{
                                 System.out.println("transacción guardada");
                             }
                         }
-                        
                     }
-            } catch (IOException | NumberFormatException e) {
+                }
+            } 
+            catch (IOException | NumberFormatException e) 
+            {
                 System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             }
             /**********************
              * CONEXION
              */
-            }
-        else if(id == 1) {
+        }
+        else if(id == 1) 
+        {
             cc = obtenerCombustibles();
         }
     }
@@ -344,6 +364,7 @@ public class Proceso implements Runnable{
     public synchronized boolean crearTransaccion(int id_surtidor, int id_combustible, int litros, int costo) {
         Statement stmt = null;
          try {
+             System.out.println("entro a crear transaccion");
             Main.conn.setAutoCommit(false);
    
             stmt = Main.conn.createStatement();
@@ -352,6 +373,7 @@ public class Proceso implements Runnable{
             stmt.executeUpdate(sql);
             stmt.close();
             Main.conn.commit();
+            System.out.println("salio de crear transaccion");
             return true;
          } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );

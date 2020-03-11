@@ -61,8 +61,8 @@ public class FXMLDocumentController implements Initializable {
                     
                     if(transaccionCreada) {
                         total.setText(Integer.toString(costo));
-                        guardarSurtidor(Integer.getInteger(finalSurtidor));
-                        Main.surtidor = Integer.getInteger(finalSurtidor);
+                        guardarSurtidor(Integer.parseInt(finalSurtidor));
+                        Main.surtidor = Integer.parseInt(finalSurtidor);
                         
                         //bandera
                         System.out.println("Surtidor: "+finalSurtidor);
