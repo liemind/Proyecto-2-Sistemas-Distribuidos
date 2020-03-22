@@ -10,7 +10,6 @@ import Model.Estacion;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,132 +20,31 @@ import java.util.ArrayList;
  *
  * @author Liemind
  */
-public class Proceso implements Runnable{
+public class Proceso implements Runnable
+{
     private int id;
     private ArrayList<Combustible> cc;
     
-    public Proceso(int id) {
+    public Proceso(int id) 
+    {
         this.id = id;
         this.cc = new ArrayList<>();
     }
     
     @Override
-    public void run() {
+    public void run() 
+    {
         //Estacion estacion = crearEstacion("/25.16.98.11");
         //System.out.println("la id de la estacion 25.16.98.10 es: " + buscarEstacion("25.16.98.11"));
         
-        if(id == 0) {
-            int cantTransacciones, id_surtidor, surtidor, id_combustible, litros, costo;
-            /**********************
-             * CONEXION
-             */
-            try {
-                InetAddress ip = InetAddress.getByName("localhost");
-                DatagramSocket socket = new DatagramSocket(10500);
-                int suma = 0;
-
-                while(true)
-                {                    
-                    byte[] bufferEntrada, bufferSalida;                    
-                    
-                    //envia al usuario que existen cambios en el combustible
-                    bufferSalida = Integer.toString( Main.status ).getBytes();
-                    DatagramPacket msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                    socket.send(msjSalida);
-                    
-                    //oremos
-                    if(Main.status == 1) {
-                        //envia al usuario los precios actuales del combustible EN ORDEN
-                        for (int i = 0; i < cc.size(); i++) {
-                            bufferSalida = Integer.toString( cc.get(i).getCosto() ).getBytes();
-                            msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                            socket.send(msjSalida);
-                        }
-                        Main.status = 0;
-                    }
-                    
-                    
-                    //pregunta al usuario si hay transacciones
-                    bufferEntrada = new byte[1000];
-                    DatagramPacket msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
-                    socket.receive(msjEntrada);
-                    String temporal = new String(bufferEntrada);
-                    temporal = temporal.trim();
-                    
-                    int transacciones = Integer.parseInt(temporal);
-                    System.out.println("transaccion: "+transacciones);
-                    //crea la estacion para recibir la transacción
-                    String nombreEmpresa = msjEntrada.getAddress().toString();
-                    Estacion estacion = crearEstacion(nombreEmpresa);
-                    
-                    //bandera
-                    System.out.println("Estacion: "+estacion.getNombre());
-                    //end bandera
-                    
-                    if(transacciones == 1) {
-                        // cantidad de transacciones
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        cantTransacciones = Integer.parseInt(temporal);
-                        
-                        //numero del surtidor ese
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        surtidor = Integer.parseInt(temporal);
-                        
-                        //guardar cantidad transacciones
-                        actualizarTransacciones(estacion.getId(), surtidor, cantTransacciones);
-                        
-                        /***
-                         * INICIO RECIBIR TRANSACCIONES
-                        ***/
-                        id_surtidor = buscarIdSurtidor(nombreEmpresa, surtidor);
-                        
-                        // id combustible
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        id_combustible = Integer.parseInt(temporal);
-                        
-                        // litros
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        litros = Integer.parseInt(temporal);
-                        
-                        // costo
-                        bufferEntrada = new byte[1000];
-                        socket.receive(msjEntrada);
-                        temporal = new String(bufferEntrada);
-                        temporal = temporal.trim();
-                        costo = Integer.parseInt(temporal);
-                        
-                        if(crearTransaccion(id_surtidor, id_combustible, litros, costo)) {
-                            System.out.println("transacción guardada");
-                        }
-                        
-                    }
-                    
-                    
-                    
-                    
-                    
-                }
-            } catch (IOException | NumberFormatException e) {
-                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            }
-            /**********************
-             * CONEXION
-             */
-            }
-        else if(id == 1) {
-            cc = obtenerCombustibles();
+        if(id == 0) 
+        {
+            sucursal();
+        }
+        else if(id == 1) 
+        {
+            //sucursal();
+            System.out.println("hola existo");
         }
     }
 
@@ -156,7 +54,8 @@ public class Proceso implements Runnable{
      */
     public synchronized ArrayList<Combustible> obtenerCombustibles() {
         Statement stmt = null;
-        try {
+        try 
+        {
             ArrayList<Combustible> combustibles = new ArrayList<>();
             stmt = Main.conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM combustible;");
@@ -171,70 +70,63 @@ public class Proceso implements Runnable{
             stmt.close();
             return combustibles;
 
-        }catch(Exception e) {
+        }
+        catch(Exception e) 
+        {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return null;
         }
     }
     
     public synchronized Estacion crearEstacion(String nombreEs) {
-        String nombreE = nombreEs.split("/")[1];
+        //String nombreE = nombreEs.split("/")[1];
+        String nombreE = nombreEs;
         Statement stmt = null;
-        int idEstacion = 0;
-        Estacion es = null;
+        Estacion estacion = null;
         try {
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
             //consultar estacion
-            //n = buscarEstacion(nombreE);
-            //System.out.println("n: " + n);
-            if(existeEstacion(nombreE)) {
-                System.out.println("entro a crear la ip");
-                //crear Estacion
-                String sql = "INSERT INTO estacion (nombre) VALUES ('"+nombreE+"');"; 
-                stmt.executeUpdate(sql);
-                System.out.println("Paso consulta -1");
-                //por la id
+
+            //crear Estacion
+            String sql = "INSERT INTO estacion (nombre) VALUES ('"+nombreE+"');"; 
+            stmt.executeUpdate(sql);
+            //por la id
                 
-                idEstacion = buscarEstacion(nombreE);
-                System.out.println("la id de la estacion creada es: " + idEstacion);
-                
-                //ESTACIONES
-                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+idEstacion+",1,0 );";
-                stmt.executeUpdate(sql);
-                
-                
-                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+idEstacion+",2,0 );";
-                stmt.executeUpdate(sql);
-                
-                
-                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+idEstacion+",3,0 );";
-                stmt.executeUpdate(sql);
-                
-                sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
-                           "VALUES ("+idEstacion+",4,0 );";
-                stmt.executeUpdate(sql);
-                
-                es = new Estacion(nombreE);
-                es.setId(idEstacion);
-                System.out.println("Fin if");
-            }
-            
+            estacion = buscarEstacion(nombreE);
+            System.out.println("la id de la estacion creada es: " + estacion.getId());
+
+            //ESTACIONES
+            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
+                       "VALUES ("+estacion.getId()+",1,0 );";
+            stmt.executeUpdate(sql);
+
+
+            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
+                       "VALUES ("+estacion.getId()+",2,0 );";
+            stmt.executeUpdate(sql);
+
+
+            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
+                       "VALUES ("+estacion.getId()+",3,0 );";
+            stmt.executeUpdate(sql);
+
+            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) " +
+                       "VALUES ("+estacion.getId()+",4,0 );";
+            stmt.executeUpdate(sql);
+
             stmt.close();
             Main.conn.commit();
-            System.out.println("salio de crear estacion");
-            return es;
         } 
-        catch ( SQLException e ) {
+        catch ( SQLException e ) 
+        {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        return null;
+        return estacion;
     }
     
-    public synchronized boolean existeEstacion(String nombreE) {
+    public synchronized boolean existeEstacion(String nombreE) 
+    {
         Statement stmt = null;
         try {
             
@@ -247,7 +139,7 @@ public class Proceso implements Runnable{
             int cantIP = 0; /*Representa a la cantidad de ip's que esta en la base de datos que son iguales a la nombreE*/
             while(rs.next()) {
                 cantIP = rs.getInt("count(*)");
-                System.out.println("Cantidad de ips: " + cantIP);
+                //System.out.println("Cantidad de ips: " + cantIP);
             }
             rs.close();
             stmt.close();
@@ -255,76 +147,60 @@ public class Proceso implements Runnable{
             
             if (cantIP==0)
             {
-                return true;
+                return false;
             }
-            
-            return false;
-            
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        return false;
+        return true;
     }
     
     
-    public synchronized int buscarEstacion(String nombreE) {
+    public synchronized Estacion buscarEstacion(String nombreE) 
+    {
         Statement stmt = null;
-        int idEstacion = 0;
+        Estacion estacion = null;
         
-        try {
-            
+        try 
+        {
             //consultar estacion
             String sql = "SELECT id, nombre FROM estacion WHERE nombre = '"+nombreE+"';";
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
             ResultSet rs    = stmt.executeQuery(sql);
             
-            while (rs.next()) {
-                idEstacion = rs.getInt("id");
-                System.out.println("id: " + idEstacion);
+            while (rs.next()) 
+            {
+                 estacion = new Estacion(rs.getString("nombre"),rs.getInt("id"));
+                //System.out.println("id: " + idEstacion);
             }
             rs.close();
             stmt.close();
-            System.out.println("id2.0: " + idEstacion);
             Main.conn.commit();
-            return idEstacion;
-
-            // loop through the result set
-
-            /*while (rs.next()) {
-                n = rs.getString("nombre");
-                System.out.println("n: " + n + " id: " + rs.getInt("id"));
-            }*/
-            //System.out.println("n: " + n + " id: " + rs.getInt("id"));
-
-            
-            /*ResultSet rs = stmt.executeQuery("SELECT * FROM estacion WHERE nombre = '"+nombreE+"';");
-            System.out.println("ResultSet: " + rs.getInt("id"));
-            System.out.println("paso la consulta de buscarEstacion");
-            while ( rs.next() ) {
-               n = rs.getString("nombre");
-            }*/
-            
-            /*if(!n.isEmpty()) {
-                number = rs.getInt("id");
-            }*/
-            
-            
-            
-            
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-        System.out.println("paso por fuera");
-        return -1;
+        return estacion;
     }
     
-    
-    
-    
-    
-    
-    
+    public Estacion getEstacion(String nombreEs)
+    {
+        Estacion estacion = null;
+        if(!existeEstacion(nombreEs))
+        {
+            estacion = crearEstacion(nombreEs);
+        }
+        else
+        {
+            estacion = buscarEstacion(nombreEs);
+        }
+        return estacion;
+    }
+
     public synchronized boolean actualizarTransacciones(int id, int surtidor, int trans) {
         Statement stmt = null;
         try {
@@ -347,11 +223,12 @@ public class Proceso implements Runnable{
         Statement stmt = null;
         int number = 0;
         
-        try {
+        try 
+        {
             Main.conn.setAutoCommit(false);
             stmt = Main.conn.createStatement();
             //consultar estacion
-            ResultSet rs = stmt.executeQuery("SELECT id FROM surtidor WHERE id_estacion = '"+nombreE+"' AND id_numero_surtidor "+surtidor+";");
+            ResultSet rs = stmt.executeQuery("SELECT id FROM surtidor WHERE id_estacion = '"+nombreE+"' AND id_numero_surtidor = '"+surtidor+"';");
             
             while ( rs.next() ) {
                number = rs.getInt("id");
@@ -361,7 +238,8 @@ public class Proceso implements Runnable{
             Main.conn.commit();
             return number;
             
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
         return 0;
@@ -370,6 +248,7 @@ public class Proceso implements Runnable{
     public synchronized boolean crearTransaccion(int id_surtidor, int id_combustible, int litros, int costo) {
         Statement stmt = null;
          try {
+            System.out.println("entro a crear transaccion");
             Main.conn.setAutoCommit(false);
    
             stmt = Main.conn.createStatement();
@@ -378,10 +257,131 @@ public class Proceso implements Runnable{
             stmt.executeUpdate(sql);
             stmt.close();
             Main.conn.commit();
+            System.out.println("salio de crear transaccion");
             return true;
          } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
          }
          return false;
+    }
+    
+    
+    public void sucursal()
+    {
+        int cantTransacciones, id_surtidor, surtidor, id_combustible, litros, costo;
+        String opcion, temporal;
+
+        /**********************
+         * CONEXION
+         */
+        try 
+        {
+            //InetAddress ip = InetAddress.getByName("25.6.57.186");
+            DatagramSocket socket = new DatagramSocket(10500);
+            DatagramPacket msjEntrada, msjSalida;
+            Estacion estacion;
+            while(true)
+            {
+                byte[] bufferEntrada, bufferSalida;
+
+                //recibe la conexion usando un status de conexion
+                bufferEntrada = new byte[1000];
+                msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
+                socket.receive(msjEntrada);
+                
+                opcion = new String(bufferEntrada);
+                opcion = opcion.trim();
+                System.out.println("recibe opcion: " + opcion);
+                
+                switch(opcion)
+                {
+                    case "1":
+                        //obtener combustible
+                        cc = obtenerCombustibles();
+
+                        //envia al usuario los precios actuales del combustible EN ORDEN
+                        temporal = null;
+                        temporal = Integer.toString(cc.get(0).getCosto())+","+Integer.toString(cc.get(1).getCosto())+","+Integer.toString(cc.get(2).getCosto())+","+Integer.toString(cc.get(3).getCosto())+","+Integer.toString(cc.get(4).getCosto());
+                        System.out.println("t: "+temporal);
+                        
+                        bufferSalida = temporal.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, msjEntrada.getAddress(), msjEntrada.getPort());
+                        socket.send(msjSalida);
+
+                        System.out.println("envio combustibles: " + msjEntrada.getAddress());
+                        break;
+                    case "2":
+                        
+                        /***
+                        * INICIO RECIBIR TRANSACCIONES
+                        ***/
+                        System.out.println("entro a guardar transaccion");
+                        //confirma recepcion de opcion
+                        temporal = "ok";
+                        bufferSalida = temporal.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, msjEntrada.getAddress(), msjEntrada.getPort());
+                        socket.send(msjSalida);
+                        
+                        bufferEntrada = new byte[1000];
+                        msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
+                        socket.receive(msjEntrada);
+                        
+                        //obtiene la estacion para recibir la transacción
+                        String nombreEmpresa = msjEntrada.getAddress().toString();
+                        estacion = getEstacion(nombreEmpresa);
+                        System.out.println("obtiene la estacion: " + estacion.getNombre());
+                        
+                        //obtiene el surtidor y la cantidad de transacciones
+                        temporal = new String(bufferEntrada);
+                        temporal = temporal.trim();
+                        System.out.println("surtidor y cant. transacciones: " + temporal);
+                        
+                        String[] arrtrans = temporal.split(",", 2);
+                        surtidor = Integer.parseInt(arrtrans[0]);
+                        cantTransacciones = Integer.parseInt(arrtrans[1]);
+                        
+                        //guardar cantidad transacciones
+                        actualizarTransacciones(estacion.getId(), surtidor, cantTransacciones);
+                        System.out.println("actuliza transacciones");
+                        id_surtidor = buscarIdSurtidor(nombreEmpresa, surtidor);
+                        
+                        //confirma recepcion de opcion
+                        temporal = "ok";
+                        bufferSalida = temporal.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, msjEntrada.getAddress(), msjEntrada.getPort());
+                        socket.send(msjSalida);
+                        
+                        /*Obtiene la transaccion*/
+                        bufferEntrada = new byte[1000];
+                        msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length); 
+                        socket.receive(msjEntrada);
+
+                        temporal = new String(bufferEntrada);
+                        temporal = temporal.trim();
+                        System.out.println("datos transaccion: " + temporal);
+                        arrtrans = temporal.split(",");
+                        id_combustible = Integer.parseInt(arrtrans[0]);
+                        litros = Integer.parseInt(arrtrans[1]);
+                        costo = Integer.parseInt(arrtrans[2]);
+                        
+                        if(crearTransaccion(id_surtidor, id_combustible, litros, costo)) {
+                            System.out.println("transacción guardada");
+                        }
+                        //confirma recepcion de opcion
+                        temporal = "ok";
+                        bufferSalida = temporal.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, msjEntrada.getAddress(), msjEntrada.getPort());
+                        socket.send(msjSalida);
+                        break;
+                }
+            }
+        } 
+        catch (IOException | NumberFormatException e) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        /**********************
+         * CONEXION
+         */
     }
 }

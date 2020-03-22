@@ -33,115 +33,93 @@ public class Proceso implements Runnable{
     @Override
     public void run() {
         if(id == 0) {
-            int surtidor, status = 0, transacciones;
+            int surtidor, status = 0;
             int n3,n5,n7,die,kero;
             /**********************
              * CONEXION
              */
             try {
                 DatagramSocket socket = new DatagramSocket();
-                InetAddress ip = InetAddress.getByName("localhost");
+                InetAddress ip = InetAddress.getByName("25.6.57.186");
                 
-                //consultar si hay cambios actuales en el combustible
+                /*Para iniciar la conexion con el servidor se envia un 1*/
+                String conectar = "1";
+                byte[] bufferSalida = conectar.getBytes();
+                DatagramPacket msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length, ip, 10500);
+                socket.send(msjSalida);
+                System.out.println("envio con exito conexion");
+                
+                //Recibe combustible
                 byte[] bufferEntrada = new byte[1000];
                 DatagramPacket msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
                 socket.receive(msjEntrada);
-                String numeroString = new String(bufferEntrada);
-                numeroString = numeroString.trim();
-                status = Integer.parseInt(numeroString);
+                System.out.println("recibio las bencinas");
+                String datosBrutos = new String(bufferEntrada);
+                datosBrutos=datosBrutos.trim();
+                String[] datosString = datosBrutos.split(",");
+                ArrayList<Integer> datos = new ArrayList<>();
                 
-                if(status == 1) {
-                    //recibir cambios en el combustible
-                    
-                    //93
-                    bufferEntrada = new byte[1000];
-                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
-                    socket.receive(msjEntrada);
-                    numeroString = new String(bufferEntrada);
-                    numeroString = numeroString.trim();
-                    n3 = Integer.parseInt(numeroString);
-                    
-                    //95
-                    bufferEntrada = new byte[1000];
-                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
-                    socket.receive(msjEntrada);
-                    numeroString = new String(bufferEntrada);
-                    numeroString = numeroString.trim();
-                    n5 = Integer.parseInt(numeroString);
-                    
-                    //97
-                    bufferEntrada = new byte[1000];
-                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
-                    socket.receive(msjEntrada);
-                    numeroString = new String(bufferEntrada);
-                    numeroString = numeroString.trim();
-                    n7 = Integer.parseInt(numeroString);
-                    
-                    //diesel
-                    bufferEntrada = new byte[1000];
-                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
-                    socket.receive(msjEntrada);
-                    numeroString = new String(bufferEntrada);
-                    numeroString = numeroString.trim();
-                    die = Integer.parseInt(numeroString);
-                    
-                    //kerosene
-                    bufferEntrada = new byte[1000];
-                    msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
-                    socket.receive(msjEntrada);
-                    numeroString = new String(bufferEntrada);
-                    numeroString = numeroString.trim();
-                    kero = Integer.parseInt(numeroString);
-                    
-                    //guardar cambios
-                    guardarCombustible(n3, n5, n7, die, kero);
+                for (int i = 0; i < datosString.length; i++) 
+                {
+                    datos.add(Integer.parseInt(datosString[i]));
+                    System.out.println("bencina: " + datosString[i]);
                 }
+                guardarCombustible(datos);
                 
-                //enviar si hay o no transacción
-                int numero = Main.status;
-                numeroString = Integer.toString(numero);
-                byte[] bufferSalida = numeroString.getBytes();
-                DatagramPacket msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                socket.send(msjSalida);
-                
-                if(numero == 1) {
-                    //cantidad de transacciones
-                    transacciones = cantidadTransacciones(Main.surtidor);
-                    numeroString = Integer.toString(transacciones);
-                    bufferSalida = numeroString.getBytes();
-                    msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                    socket.send(msjSalida);
-                    
-                    
-                    //numero del surtidor
-                    surtidor = Main.surtidor;
-                    numeroString = Integer.toString(surtidor);
-                    bufferSalida = numeroString.getBytes();
-                    msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                    socket.send(msjSalida);
-                    
-                    buscarUltimaTransaccion();
-                    //id combustible
-                    numeroString = Integer.toString(combustibleId);
-                    bufferSalida = numeroString.getBytes();
-                    msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                    socket.send(msjSalida);
-                    
-                    //litros
-                    numeroString = Integer.toString(litros);
-                    bufferSalida = numeroString.getBytes();
-                    msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                    socket.send(msjSalida);
-                    
-                    //costo
-                    numeroString = Integer.toString(costo);
-                    bufferSalida = numeroString.getBytes();
-                    msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
-                    socket.send(msjSalida);
-                }
+                boolean validar = true;
+                while(validar)
+                {
+                    //envia "1" si hay transaccion o "0" si no lo hay
+                    String estadoTransaccion = Integer.toString(Main.status);
+                    System.out.println("estatus: " + estadoTransaccion);
+                    if(estadoTransaccion.equals("2")) 
+                    {
+                        bufferSalida = estadoTransaccion.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
+                        socket.send(msjSalida);
+                        System.out.println("Envio la opcion de ingreso ingresar transaccion");
+                        
+                        bufferEntrada = new byte[1000];
+                        msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
+                        socket.receive(msjEntrada);
+                        System.out.println("Confirma recpcion de opcion");
+                        
+                        //envia numero del surtidor y la cantidad de transacciones
+                        datosBrutos = Integer.toString(Main.surtidor)+","+Integer.toString(cantidadTransacciones(Main.surtidor));
+                        bufferSalida = datosBrutos.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
+                        socket.send(msjSalida);
 
+                        bufferEntrada = new byte[1000];
+                        msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
+                        socket.receive(msjEntrada);
+                        System.out.println("Confirma recpcion de numero del surtidor y cantidad de transacciones");
+                        
+                        
+                        buscarUltimaTransaccion();
+                        System.out.println("busca transaccion");
+                        /*envia el id del combustible, litros y costo*/
+                        datosBrutos = Integer.toString(combustibleId)+","+Integer.toString(litros)+","+Integer.toString(costo);
+                        System.out.println("datosBrutos: " + datosBrutos);
+                        bufferSalida = datosBrutos.getBytes();
+                        msjSalida = new DatagramPacket(bufferSalida, bufferSalida.length,ip, 10500);
+                        socket.send(msjSalida);
+                        
+                        System.out.println("envia transaccion");
+                        validar = false;
+                        
+                        bufferEntrada = new byte[1000];
+                        msjEntrada = new DatagramPacket(bufferEntrada, bufferEntrada.length);
+                        socket.receive(msjEntrada);
+                        System.out.println("Confirma recpcion del guardado de los datos de la bd principal");
+                    }
+                }
                 
-            } catch (IOException e) {
+                
+                
+            } 
+            catch (IOException e) 
+            {
                 System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             }
             
@@ -149,7 +127,8 @@ public class Proceso implements Runnable{
              * CONEXION
              */
         }
-        else if(id == 1) {
+        else if(id == 1) 
+        {
             System.out.println("Proceso 1");
         }
     }
@@ -201,31 +180,33 @@ public class Proceso implements Runnable{
         } 
     }
     
-    public synchronized void guardarCombustible(int n3, int n5, int n7, int die, int kero) {
+    public synchronized void guardarCombustible(ArrayList<Integer> datos) {
         ArrayList<Combustible> arr = new ArrayList<Combustible>();
         Combustible c;
-        c = new Combustible("93", n3);
-        c.setId(1);
-        arr.add(c);
-        
-        c = new Combustible("95", n5);
-        c.setId(2);
-        arr.add(c);
-        
-        c = new Combustible("97", n7);
-        c.setId(3);
-        arr.add(c);
-        
-        c = new Combustible("Diesel", die);
-        c.setId(4);
-        arr.add(c);
-        
-        c = new Combustible("Kerosene", kero);
-        c.setId(5);
-        arr.add(c);
+        int i, tipoCombustible = 93;
+        for(i=0; i<5;i++)
+        {
+            if(i<3)
+            {
+                c = new Combustible(Integer.toString(tipoCombustible), datos.get(i));
+                tipoCombustible+=2;
+            }
+            else if(i==3)
+            {
+                c = new Combustible("Diesel", datos.get(i));
+            }
+            else
+            {
+                c = new Combustible("Kerosene", datos.get(i));
+            }
+            
+            c.setId(i+1);
+            arr.add(c);
+        }
         
         //save all
-        for(Combustible comb : arr) {
+        for(Combustible comb : arr) 
+        {
             if(comb.save(Main.conn)) {
                 System.out.println("La actualizacion de "+comb.getNombre()+" fue hecha con éxito");
             }
