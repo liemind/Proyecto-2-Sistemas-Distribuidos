@@ -68,4 +68,20 @@ public class Combustible {
         }
     }
 
+    public synchronized boolean created(Connection conn) {
+        Statement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            //guardar la transaccion
+            stmt.execute("INSERT INTO combustible (id,nombre,costo) VALUES ("+this.id+",'"+this.nombre+"', "+this.costo+");");
+            conn.commit();
+            stmt.close();
+            return true;
+        }
+        catch(Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+    }
 }

@@ -10,14 +10,13 @@ import Model.Surtidor;
 import Model.Transaccion;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  *
@@ -34,6 +33,17 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        
+        //Carpeta del usuario
+        String dir = System.getProperty("user.dir");
+        dir = dir+"\\bdrespaldo";
+        
+        System.out.println("Carpeta del usuario = " + dir);
+        
+        
+        
+        /*
         int hora, minutos;
         String finalNBD;
         Calendar calendario = Calendar.getInstance();
@@ -41,8 +51,9 @@ public class Main {
         hora =calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE);
         
+        
         //conectar("estacion.db", "C:\\Users\\elyna\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Proyecto-2-Sistemas-Distribuidos\\Cosas Separadas\\RespaldoLocal\\");
-        conectar("empresa.db", "C:\\Users\\elyna\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Proyecto-2-Sistemas-Distribuidos\\Cosas Separadas\\RespaldoLocal\\");
+        //conectar("empresa.db", "C:\\Users\\elyna\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Proyecto-2-Sistemas-Distribuidos\\Cosas Separadas\\RespaldoLocal\\");
         
         if(hora >= HORA_RESPALDO && minutos >= MINUTO_RESPALDO) {
             crearRespaldo(calendario);
@@ -54,7 +65,7 @@ public class Main {
             int finalSleep = (finalMin-currentMin)*60000;
             //sleep 
             //sleep(finalSleep);
-        }
+        }*/
 
         
     }
@@ -405,13 +416,19 @@ public class Main {
      }
     
     
-    public static void conectar(String bd, String ruta) {
+    public static void conectar(String bd) {
         Connection c = null;
-        String url = ruta+""+bd;
+        String dir = System.getProperty("user.dir");
+        String url = dir+"\\"+bd;
         try {
            Class.forName("org.sqlite.JDBC");
            c = DriverManager.getConnection("jdbc:sqlite:"+url);
            System.out.println("Base de datos Conectada");
+           if (c == null) {
+               //abre el respaldo
+               url = dir+"\\bdrespaldo";
+           }
+           
         } catch ( Exception e ) {
            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
            System.exit(0);
@@ -420,4 +437,133 @@ public class Main {
         Main.conn = c;
    }
     
+    /**
+     * Guarda en una base de datos oculta, las operaciones de una bd en específico.
+     * @param nombre nombre de la base de datos involucrada
+     * @param proceso codigo de proceso (explicado en el informe)
+     * @param s si el proceso fue o no exitoso
+     */
+    public static void logBd(String nombre, int proceso, int s) {
+        String dir = System.getProperty("user.dir");
+        String bd = "files.db";
+        String url = dir+"\\"+bd;
+        Connection logconn = null;
+        Statement stmt = null;
+        Calendar calendario = Calendar.getInstance();
+        DateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        String fecha = formato.format(calendario);
+        
+        try {
+           Class.forName("org.sqlite.JDBC");
+           logconn = DriverManager.getConnection("jdbc:sqlite:"+url);
+           System.out.println("Base de datos de respaldo conectado");
+           logconn.setAutoCommit(false);
+           stmt = logconn.createStatement();
+           
+           String sql = "INSERT INTO log (nombre,proceso,fecha) VALUES ('"+nombre+"',"+proceso+",'"+fecha+"');"; 
+           stmt.executeUpdate(sql);
+           
+           stmt.close();
+           logconn.commit();
+           logconn.close();
+        } catch ( Exception e ) {
+           System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+           System.exit(0);
+        }
+        
+    }
+    
+    /**
+     * Busca entre los respaldos y retorna el mas reciente.
+     * @return Nombre de la base de datos del ultimo respaldo.
+     */
+    public static String ultimoRespaldo() {
+        String temporalFile = new String();
+        String dir = System.getProperty("user.dir");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        dir = dir+"\\bdrespaldo";
+        File carpeta = new File(dir);
+        File[] archivos = carpeta.listFiles();
+        File[] respaldos = null;
+        
+        if (archivos != null){
+            //buscar respaldos
+            for (int i = 0; i < archivos.length; i++) {
+                File archivo = archivos[i];
+                int j=0;
+                if(!archivo.isDirectory()){
+                    respaldos[j] = archivo;
+                    j++;
+                }
+            }
+            
+            if(respaldos != null) {
+                File temporal = archivos[0];
+                if(respaldos.length > 1) {
+                    for (int i = 1; i < respaldos.length; i++) {
+                        File archivo = archivos[i];
+                        if(formato.format(archivo.lastModified()).compareTo(formato.format(temporal.lastModified())) > 0) {
+                            temporal = archivo;
+                        }
+                    }
+                }
+                else {
+                    temporalFile = temporal.getName();
+                }
+            }
+        }
+        return temporalFile;
+    }
+    
+    
+    public static boolean limpieza() {
+        int cantidadAEliminar = 5;
+        String dir = System.getProperty("user.dir");
+        dir = dir+"\\bdrespaldo";
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        File carpeta = new File(dir);
+        File[] archivos = carpeta.listFiles();
+        File[] respaldos = null;
+        
+        if(archivos.length > 5) {
+            System.out.println("Iniciando limpieza... ");
+            //inicio insertsort
+            int n = archivos.length; 
+            for (int i = 1; i < n; ++i) {
+                
+                File key = archivos[i];
+                int j = i - 1; 
+
+                while (j >= 0 && formato.format(archivos[j].lastModified()).compareTo(formato.format(key.lastModified())) > 0) {
+                    archivos[j + 1] = archivos[j]; 
+                    j = j - 1; 
+                } 
+                archivos[j + 1] = key; 
+            } 
+            //fin insersort
+            
+            //alrevez
+            int j = 0;
+            for (int i = archivos.length-1; i >= 0; i--) {
+                respaldos[j] = archivos[i];
+                j++;
+            }
+            
+            //delete
+            for (int i = cantidadAEliminar-1; i < respaldos.length; i++) {
+                File del = respaldos[i];
+                if(del.delete()) {
+                    System.out.println("Borrando: "+del.getName());
+                }
+            }
+            
+            System.out.println("Fin limpieza");
+            return true;
+            
+        }
+        else {
+            return false;
+        }
+    }
 }
