@@ -23,6 +23,8 @@ public class Main extends Application {
     //estatus 1: hay transacciones, 0: no hay transacciones
     static public int status = 0;
     static public int surtidor;
+    static final int HORA_RESPALDO = 23;
+    static final int MINUTO_RESPALDO = 00;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -43,7 +45,7 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        conn = conectar();
+        conectar("estacion.db", "C:\\Users\\Liemind\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Unidad 2\\Proyecto 2\\Proyecto 2 Sistemas Distribuidos\\C-Interfaz\\Cliente\\");
         launch(args);
     }
     
@@ -51,9 +53,9 @@ public class Main extends Application {
      * Conecta el programa con la base de datos (SQLite)
      * @return la conección a la bd.
    */
-   public static Connection conectar() {
+    public static void conectar(String bd, String ruta) {
         Connection c = null;
-        String url = "C:\\Users\\Liemind\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Unidad 2\\Proyecto 2\\Proyecto 2 Sistemas Distribuidos\\C-Interfaz\\Cliente\\estacion.db";
+        String url = ruta+""+bd;
         try {
            Class.forName("org.sqlite.JDBC");
            c = DriverManager.getConnection("jdbc:sqlite:"+url);
@@ -62,6 +64,6 @@ public class Main extends Application {
            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
            System.exit(0);
         }
-        return c;
+        Main.conn = c;
    }
 }
