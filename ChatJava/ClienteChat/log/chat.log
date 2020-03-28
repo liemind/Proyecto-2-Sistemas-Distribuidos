@@ -1,0 +1,132 @@
+2013-04-01 01:20:40,036 [main] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2013-04-01 01:20:41,221 [main] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2013-04-01 01:20:41,221 [main] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2013-04-01 01:20:41,221 [main] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2013-04-01 01:21:11,080 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: f.
+2013-04-01 01:21:11,095 [main] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2013-04-01 01:24:14,397 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 1.
+2013-04-01 01:24:27,251 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 2.
+2013-04-01 01:24:43,537 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 3.
+2013-04-01 01:24:51,415 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 4.
+2013-04-01 01:24:58,342 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 5.
+2013-04-01 01:25:12,580 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 6.
+2013-04-01 01:25:32,015 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 7.
+2013-04-01 01:25:46,561 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 8.
+2013-04-01 01:25:54,002 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 9.
+2013-04-01 01:26:02,083 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 10.
+2013-04-01 01:26:10,757 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 11.
+2013-04-01 01:26:42,097 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario 12.
+2013-04-01 20:12:49,108 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: .
+2013-04-01 22:25:39,703 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: .
+2013-04-01 22:26:38,749 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: vdgf.
+2020-03-15 19:00:58,235 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 19:01:51,915 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1235 con el nombre de ususario: .
+2020-03-15 19:01:54,005 [main] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-15 19:01:54,006 [main] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-15 19:01:54,006 [main] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-15 19:01:54,006 [main] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-15 19:02:42,734 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Dani.
+2020-03-15 19:38:27,065 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Daniela.
+2020-03-15 20:09:06,762 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 20:29:41,244 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: .
+2020-03-15 20:30:04,223 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: yorch.
+2020-03-15 21:07:12,862 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 21:08:12,552 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 21:16:29,281 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 23:17:32,538 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yoch.
+2020-03-15 23:17:49,062 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Daniela.
+2020-03-15 23:26:36,037 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-15 23:26:46,755 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Dani.
+2020-03-15 23:26:55,117 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 23:36:03,964 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-15 23:36:03,964 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-15 23:36:03,964 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-15 23:36:56,734 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-15 23:37:08,135 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Daniela.
+2020-03-15 23:37:18,926 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 23:42:39,871 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-15 23:42:39,871 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-15 23:42:54,868 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-15 23:43:06,309 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Dani.
+2020-03-15 23:43:16,849 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-15 23:44:13,653 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-15 23:44:23,043 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Daniela.
+2020-03-15 23:44:32,638 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-18 21:45:33,051 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-18 21:46:00,074 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Daniela.
+2020-03-18 21:46:11,752 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-22 20:41:16,388 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-22 20:41:18,408 [main] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-22 20:41:18,418 [main] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-22 20:41:18,418 [main] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-22 20:41:18,418 [main] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-22 22:18:39,718 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-22 22:24:01,009 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-22 22:26:16,089 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-22 22:59:20,007 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-22 23:51:09,140 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-23 04:15:05,955 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-23 04:16:16,614 [main] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-23 04:17:20,764 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-23 04:18:08,606 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Yorch.
+2020-03-23 04:18:25,637 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Daniela.
+2020-03-27 01:30:07,605 [main] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: .
+2020-03-27 03:19:04,125 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 03:20:50,662 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 03:29:16,676 [JavaFX Application Thread] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-27 04:15:18,696 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:15:20,706 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-27 04:15:20,706 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-27 04:15:20,707 [JavaFX Application Thread] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-27 04:15:20,707 [JavaFX Application Thread] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-27 04:16:54,931 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:21:47,393 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:23:30,591 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:25:07,066 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:25:43,726 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:26:13,184 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:26:35,313 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:28:56,088 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:29:43,892 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:41:48,696 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:42:33,553 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:42:54,420 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:47:22,342 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:47:37,276 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:49:09,964 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:50:08,531 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:50:28,557 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:51:13,068 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 04:53:33,301 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 05:01:27,431 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 05:02:29,247 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-27 05:06:18,672 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-27 05:15:52,855 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 01:26:16,563 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 01:27:10,519 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 01:32:07,861 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 01:32:09,872 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 01:32:09,873 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 01:32:09,877 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 01:32:09,877 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 02:03:31,323 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 02:03:33,331 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 02:03:33,331 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 02:03:33,333 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 02:03:33,333 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 02:18:23,900 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 02:18:25,910 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 02:18:25,910 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 02:18:25,914 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 02:18:25,914 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 02:29:07,474 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 02:32:19,348 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 02:33:40,815 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 03:10:35,945 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-28 03:10:52,997 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 03:11:20,518 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-28 19:02:36,802 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 19:02:38,812 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 19:02:38,813 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 19:02:38,817 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 19:02:38,817 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
