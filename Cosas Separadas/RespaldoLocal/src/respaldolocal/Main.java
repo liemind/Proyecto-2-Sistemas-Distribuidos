@@ -220,6 +220,13 @@ public class Main {
     * 
     ***********************/
     
+    
+    /**
+     * 
+     * @param bd
+     * @param ruta
+     * @return 
+     */
     public static Connection crearBasedeDatos(String bd, String ruta) {
         Connection conn2 = null;
         String url = ruta+""+bd;
@@ -416,7 +423,7 @@ public class Main {
      }
     
     
-    public static void conectar(String bd) {
+    public static Connection conectar(String bd) {
         Connection c = null;
         String dir = System.getProperty("user.dir");
         String url = dir+"\\"+bd;
@@ -426,15 +433,46 @@ public class Main {
            System.out.println("Base de datos Conectada");
            if (c == null) {
                //abre el respaldo
-               url = dir+"\\bdrespaldo";
+               bd = ultimoRespaldo();
+               if(bd.isEmpty()) {
+                   url = dir+"\\";
+                   //significa que no existe un respaldo al que atenerse. En tal caso, mejor crear la base de datos.
+                   bd = "empresa.db";
+                   c = crearBasedeDatos(bd, url);
+                   if(crearTablas(c)) {
+                        System.out.println("Tablas creadas.");
+                    }
+
+                    if(llenarDatos(c)) {
+                        System.out.println("Datos respaldados");
+                    }
+                    return c;
+               }
+               else {
+                   //si existe, hay que acceder a este
+                   url = dir+"\\bdrespaldo\\"+bd;
+                   c = DriverManager.getConnection("jdbc:sqlite:"+url);
+                   System.out.println("Base de datos de respaldo conectada");
+               }
+           }
+           else {
+               //se deben sincronizar los datos.
+               
+               //buscar ultimo data log.
+               String baseDeDatos = ultimaBasedeDatos();
+               if(!baseDeDatos.equals(bd)) {
+                   //debe hacerse la sincronización de datos. En este momento, los datos de la base de datos de respaldo son mucho más actuales que la base de datos actual, por lo que debe ser actualizada.
+               }
+               
+               
            }
            
         } catch ( Exception e ) {
            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-           System.exit(0);
+           return null;
         }
         
-        Main.conn = c;
+        return c;
    }
     
     /**
@@ -468,7 +506,6 @@ public class Main {
            logconn.close();
         } catch ( Exception e ) {
            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-           System.exit(0);
         }
         
     }
@@ -515,7 +552,10 @@ public class Main {
         return temporalFile;
     }
     
-    
+    /**
+     * Limpia los archivos de respaldo, dejando sólo los cinco últimos.
+     * @return si la operación fue exitosa o no.
+     */
     public static boolean limpieza() {
         int cantidadAEliminar = 5;
         String dir = System.getProperty("user.dir");
@@ -566,4 +606,41 @@ public class Main {
             return false;
         }
     }
+
+    /**
+     * Busca en la base de datos de registro lo último hecho.
+     * @return el nombre de la ultima base de datos que realizó alguna acción.
+     */
+    public static String ultimaBasedeDatos() {
+        String dir = System.getProperty("user.dir");
+        String bd = "files.db";
+        String url = dir+"\\"+bd;
+        Connection logconn = null;
+        Statement stmt = null;
+        String nombre = new String();
+        
+        try {
+           Class.forName("org.sqlite.JDBC");
+           logconn = DriverManager.getConnection("jdbc:sqlite:"+url);
+           System.out.println("Base de datos de respaldo conectado");
+           logconn.setAutoCommit(false);
+           stmt = logconn.createStatement();
+           
+           ResultSet rs = stmt.executeQuery("SELECT nombre FROM log ORDER BY id DESC LIMIT 1;");
+
+            while ( rs.next() ) {
+               nombre = rs.getString("nombre");
+            }
+           
+           stmt.close();
+           logconn.commit();
+           logconn.close();
+           return nombre;
+        } catch ( Exception e ) {
+           System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+           return nombre;
+        }
+        
+    }
+    
 }
