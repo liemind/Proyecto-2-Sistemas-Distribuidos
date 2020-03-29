@@ -1,0 +1,8 @@
+CREATE DATABASE procesos;
+
+CREATE TABLE log(
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   nombre TEXT NOT NULL,
+   proceso INTEGER NOT NULL,
+   fecha TEXT NOT NULL
+);
