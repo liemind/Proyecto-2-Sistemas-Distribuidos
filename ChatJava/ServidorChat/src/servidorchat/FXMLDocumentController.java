@@ -87,7 +87,11 @@ public class FXMLDocumentController implements Initializable
         /*Clase encargada de realizar las consultas a la base de datos*/
         this.proceso = new Proceso();
     }
-
+    
+    /**
+     * Este metodo se encarga de actualizar los costos de los combustibles  y de enviarlo a la clase ConexionServidor para que este se encargue de enviar el mensaje 
+     * masivamente a todas las estaciones que se encuentren conectadas
+     */
     public void cambiarNumero()
     {
         String n3, n5, n7, dies, keros, fecha_hora;
@@ -155,7 +159,10 @@ public class FXMLDocumentController implements Initializable
             //ServidorChat.status = 1;
         }
     }
-
+    
+    /**
+     * Este metodo se encarga de limpiar los campos de los costos de combustibles
+     */
     @FXML
     public void limpiar()
     {

@@ -15,7 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- *
+ * Esta clase ayuda a realizar las gestiones de las estaciones tales como crear transacciones, nuevas estaciones, etc
+ * 
  * @author Liemind
  */
 public class Proceso
@@ -45,7 +46,6 @@ public class Proceso
             {
                 Combustible combustible = new Combustible(rs.getString("nombre"), rs.getInt("costo"), rs.getString("fecha_hora"));
                 combustible.setId(rs.getInt("id"));
-                //System.out.println("combustible: " + combustible.getNombre() + " " + combustible.getId());
                 combustibles.add(combustible);
             }
             //end bandera
@@ -60,8 +60,13 @@ public class Proceso
             return null;
         }
     }
-
-    public static synchronized Estacion crearEstacion(String nombreEs)
+    
+    /**
+     * Crea una estacion en caso de no existir con la ip en la que proviene la estacion
+     * @param nombreEs
+     * @return 
+     */
+    public static synchronized Estacion CrearEstacion(String nombreEs)
     {
         //String nombreE = nombreEs.split("/")[1];
         String nombreE = nombreEs;
@@ -81,23 +86,6 @@ public class Proceso
             estacion = buscarEstacion(nombreE);
             System.out.println("la id de la estacion creada es: " + estacion.getId());
 
-            //ESTACIONES
-            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) "
-                    + "VALUES (" + estacion.getId() + ",1,0 );";
-            stmt.executeUpdate(sql);
-
-            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) "
-                    + "VALUES (" + estacion.getId() + ",2,0 );";
-            stmt.executeUpdate(sql);
-
-            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) "
-                    + "VALUES (" + estacion.getId() + ",3,0 );";
-            stmt.executeUpdate(sql);
-
-            sql = "INSERT INTO surtidor (id_estacion, id_numero_surtidor, transacciones) "
-                    + "VALUES (" + estacion.getId() + ",4,0 );";
-            stmt.executeUpdate(sql);
-
             stmt.close();
             ServidorChat.conn.commit();
         }
@@ -107,7 +95,12 @@ public class Proceso
         }
         return estacion;
     }
-
+    
+    /**
+     * Verifica la existencia de una estacion en particular
+     * @param nombreE
+     * @return 
+     */
     public static synchronized boolean existeEstacion(String nombreE)
     {
         Statement stmt = null;
@@ -120,7 +113,7 @@ public class Proceso
             ResultSet rs = stmt.executeQuery(sql);
 
             int cantIP = 0;
-            /*Representa a la cantidad de ip's que esta en la base de datos que son iguales a la nombreE*/
+            //Representa a la cantidad de ip's que esta en la base de datos que son iguales a la nombreE
             while (rs.next())
             {
                 cantIP = rs.getInt("count(*)");
@@ -141,7 +134,12 @@ public class Proceso
         }
         return true;
     }
-
+    
+    /**
+     * Busca una estación en particular. Si existe la estacion, devuelve una instancia con todos los datos, en caso contrario devuelve un null
+     * @param nombreE
+     * @return estacion
+     */
     public static synchronized Estacion buscarEstacion(String nombreE)
     {
         Statement stmt = null;
@@ -158,7 +156,6 @@ public class Proceso
             while (rs.next())
             {
                 estacion = new Estacion(rs.getString("nombre"), rs.getInt("id"));
-                //System.out.println("id: " + idEstacion);
             }
             rs.close();
             stmt.close();
@@ -171,21 +168,26 @@ public class Proceso
         return estacion;
     }
 
-    public static Estacion getEstacion(String nombreEs)
+    /**
+     * Obtiene los datos de una estacion en particula en caso de que exista
+     * @param nombreEs
+     * @return estacion
+     */
+    /*public static Estacion getEstacion(String nombreEs)
     {
         Estacion estacion = null;
         if (!existeEstacion(nombreEs))
         {
-            estacion = crearEstacion(nombreEs);
+            estacion = CrearEstacion(nombreEs);
         }
         else
         {
             estacion = buscarEstacion(nombreEs);
         }
         return estacion;
-    }
+    }*/
 
-    public static synchronized boolean actualizarTransacciones(int id, int surtidor, int trans)
+    /*public static synchronized boolean actualizarTransacciones(int id, int surtidor, int trans)
     {
         Statement stmt = null;
         try
@@ -204,9 +206,9 @@ public class Proceso
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return false;
-    }
+    }*/
 
-    public static synchronized int buscarIdSurtidor(String nombreE, int surtidor)
+    /*public static synchronized int buscarIdSurtidor(String nombreE, int surtidor)
     {
         Statement stmt = null;
         int number = 0;
@@ -233,32 +235,7 @@ public class Proceso
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return 0;
-    }
-
-    /*public static synchronized boolean crearTransaccion(int id_surtidor, int id_combustible, int litros, int costo, String fecha_hora)
-    {
-        Statement stmt = null;
-        try
-        {
-            System.out.println("entro a crear transaccion");
-            ServidorChat.conn.setAutoCommit(false);
-
-            stmt = ServidorChat.conn.createStatement();
-            String sql = "INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo, fecha_hora) "
-                    + "VALUES (" + id_surtidor + ", " + id_combustible + ", " + litros + ", " + costo + ", " + fecha_hora + " );";
-            stmt.executeUpdate(sql);
-            stmt.close();
-            ServidorChat.conn.commit();
-            System.out.println("salio de crear transaccion");
-            return true;
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        return false;
-    }*/
-    
+    } */
     
     /**
      * Guarda en la base de datos local una transacción
@@ -307,24 +284,11 @@ public class Proceso
         }
         return idTransaccion;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    /**
+     * Obtiene la fecha y hora actual del sistema
+     * @return fecha
+     */
     public static String ObtenerFechaYHoraActual()
     {
         String formato = "yyyy-MM-dd HH:mm:ss";

@@ -6,6 +6,7 @@
 package servidorchat;
 
 import Model.Combustible;
+import Model.Estacion;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -68,6 +69,13 @@ public class PuenteConexiones  extends Thread
                     System.out.println("es cliente");
                     cc = new ConexionCliente(socket, mensajes, false);
                     cc.start();
+                    
+                    String ip =  socket.getInetAddress().toString();
+                    Estacion estacion = Proceso.buscarEstacion(ip);
+                    if(estacion==null)
+                    {
+                        Proceso.CrearEstacion(ip);
+                    }
                     //Una vez establecida la conexion se debe enviar precio de los combustibles
                     enviarCombustibles(cc);
                     
@@ -92,6 +100,10 @@ public class PuenteConexiones  extends Thread
         }
     }
     
+    /**
+     * Este metodo se encarga de reunir todos los datos de los combustibles y lo prepara como mensaje para que se pueda enviar masivamente a las estaciones
+     * @param cc 
+     */
     public void enviarCombustibles(ConexionCliente cc)
     {
         ArrayList<Combustible> combustibles = Proceso.ObtenerCombustibles();

@@ -229,3 +229,5 @@
 2020-03-29 03:43:58,483 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
 2020-03-29 03:57:21,402 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
 2020-03-29 04:04:03,946 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-29 04:28:54,152 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 04:30:15,617 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.

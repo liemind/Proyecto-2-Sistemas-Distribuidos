@@ -80,6 +80,12 @@ public class ConexionCliente extends Thread implements Observer{
         }   
     }
     
+    /**
+     * Este metodo se encarga de enviar masivamente los combustibles a todas las estaciones cuando se realizan nuevos cambios de precios. 
+     * Esto se envia a través de un mensaje
+     * @param o
+     * @param arg 
+     */
     @Override
     public void update(Observable o, Object arg) 
     {
@@ -94,6 +100,11 @@ public class ConexionCliente extends Thread implements Observer{
         }
     }
     
+    /**
+     * Estem método es utilizado para enviar mensajes personalizados al momento de realizar la conexion entre el servidor y el cliente
+     * comunmente por aqui se envía los costos de los combustibles a la estación que recien se conecta al server
+     * @param msj 
+     */
     public void enviarMensajeParticular(String msj)
     {
         try 

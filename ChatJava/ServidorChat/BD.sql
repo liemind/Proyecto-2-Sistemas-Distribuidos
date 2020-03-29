@@ -3,7 +3,8 @@ CREATE DATABASE empresa;
 CREATE TABLE combustible(
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    nombre TEXT NOT NULL,
-   costo INTEGER NOT NULL
+   costo INTEGER NOT NULL,
+   fecha_hora TEXT NOT NULL
 );
 
 CREATE TABLE estacion(
@@ -11,22 +12,15 @@ CREATE TABLE estacion(
    nombre TEXT NOT NULL
 );
 
-CREATE TABLE surtidor(
-   id INTEGER PRIMARY KEY AUTOINCREMENT,
-   id_estacion INTEGER NOT NULL,
-   id_numero_surtidor INTEGER NOT NULL,
-   transacciones INTEGER,
-   FOREIGN KEY(id_estacion) REFERENCES estacion(id)
-);
-
 CREATE TABLE transaccion(
    id INTEGER PRIMARY KEY AUTOINCREMENT,
-   id_transaccion_estacion INTEGER NOT NULL,
+   id_estacion INTEGER NOT NULL,
    id_surtidor INTEGER NOT NULL,
    id_combustible INTEGER NOT NULL,
    litros INTEGER NOT NULL,
    costo INTEGER NOT NULL,
-   FOREIGN KEY(id_surtidor) REFERENCES surtidor(id),
+   fecha_hora TEXT NOT NULL,
+   FOREIGN KEY(id_estacion) REFERENCES estacion(id),
    FOREIGN KEY(id_combustible) REFERENCES combustible(id)
 );
 
@@ -48,5 +42,3 @@ VALUES ('Diesel', 10);
 
 INSERT INTO combustible (nombre,costo)
 VALUES ('Kerosene', 10);
-
-/*Upgradear Combustible*/

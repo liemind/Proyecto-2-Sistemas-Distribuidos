@@ -35,7 +35,11 @@ public class ConexionServidor
             log.error("El socket no se creo correctamente. ");
         }
     }
-
+    
+    /**
+     * Este metodo se encarga de autoenviarse los precios de los combustibles para proceder a enviarlos masivamente a las estaciones conectadas
+     * @param msj 
+     */
     public void enviarMensaje(String msj)
     {
         System.out.println("Entro a enviar el msj");
