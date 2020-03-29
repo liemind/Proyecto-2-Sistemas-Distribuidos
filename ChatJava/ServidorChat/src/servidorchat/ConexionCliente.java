@@ -56,13 +56,15 @@ public class ConexionCliente extends Thread implements Observer{
                 // Lee un mensaje enviado por el cliente
                 mensajeRecibido = entradaDatos.readUTF();
                 System.out.println(mensajeRecibido);
+                
+                
                 // Pone el mensaje recibido en mensajes para que se notifique 
                 // a sus observadores que hay un nuevo mensaje.
-                mensajes.setMensaje(mensajeRecibido, isServer);
+                mensajes.setMensaje(mensajeRecibido, isServer, socket.getInetAddress().toString());
             } 
             catch (IOException ex) 
             {
-                log.info("Cliente con la IP " + socket.getInetAddress().getHostName() + " desconectado.");
+                log.info("Cliente con la IP " + socket.getInetAddress() + " desconectado.");
                 conectado = false; 
                 // Si se ha producido un error al recibir datos del cliente se cierra la conexion con el.
                 try 
@@ -96,10 +98,8 @@ public class ConexionCliente extends Thread implements Observer{
     {
         try 
         {
-            System.out.println("entro a enviar combustible al socket");
             // Envia el mensaje al cliente
             this.salidaDatos.writeUTF(msj);
-            System.out.println("salio de enviar combustible");
         } 
         catch (IOException ex) 
         {

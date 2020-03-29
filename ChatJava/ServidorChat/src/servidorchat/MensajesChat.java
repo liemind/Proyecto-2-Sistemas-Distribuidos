@@ -1,6 +1,8 @@
 
 package servidorchat;
 
+import Model.Combustible;
+import java.util.ArrayList;
 import java.util.Observable;
 
 /**
@@ -19,7 +21,7 @@ public class MensajesChat extends Observable{
         return mensaje;
     }
     
-    public void setMensaje(String mensaje, boolean isServer)
+    public void setMensaje(String mensaje, boolean isServer, String ip)
     {
         
         this.mensaje = mensaje;
@@ -37,6 +39,16 @@ public class MensajesChat extends Observable{
         {
             System.out.println("guarda los registros en la bd");
             System.out.println("transaccion: " + mensaje);
+            
+            mensaje = mensaje.trim();
+            String[] transaccion = mensaje.split(",");
+            
+            int id_surtidor = Integer.parseInt(transaccion[1]);
+            int id_combustible = Integer.parseInt(transaccion[2]);
+            int litros = Integer.parseInt(transaccion[3]);
+            int costo = Integer.parseInt(transaccion[4]);
+            String fecha_hora = transaccion[5];
+            System.out.println("Id transaccion: " + Proceso.CrearTransaccion(ip, id_surtidor, id_combustible, litros, costo, fecha_hora));
             
         }
     }

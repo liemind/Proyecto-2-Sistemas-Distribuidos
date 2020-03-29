@@ -54,7 +54,7 @@ public class PuenteConexiones  extends Thread
             {
                 this.log.info("Servidor a la espera de conexiones.");
                 this.socket = servidor.accept();
-                this.log.info("Cliente con la IP " + socket.getInetAddress().getHostName() + " conectado.");
+                this.log.info("Cliente con la IP " + socket.getInetAddress() + " conectado.");
                 ConexionCliente cc;
                 if(this.isServer)
                 {
@@ -97,9 +97,12 @@ public class PuenteConexiones  extends Thread
         ArrayList<Combustible> combustibles = Proceso.ObtenerCombustibles();
         //envia al usuario los precios actuales del combustible EN ORDEN
         String temporal = null;
-        temporal = Integer.toString(combustibles.get(0).getCosto()) + "," + Integer.toString(combustibles.get(1).getCosto()) + "," + Integer.toString(combustibles.get(2).getCosto()) + "," + Integer.toString(combustibles.get(3).getCosto()) + "," + Integer.toString(combustibles.get(4).getCosto());
-        System.out.println("t: " + temporal);
-        
+        int size = combustibles.size()-1;
+        temporal = Integer.toString(combustibles.get(size-4).getCosto()) + "," + Integer.toString(combustibles.get(size-4).getId()) + ","
+                + Integer.toString(combustibles.get(size-3).getCosto()) + "," + Integer.toString(combustibles.get(size-3).getId()) + ","
+                + Integer.toString(combustibles.get(size-2).getCosto()) + "," + Integer.toString(combustibles.get(size-2).getId()) + ","
+                + Integer.toString(combustibles.get(size-1).getCosto()) + "," + Integer.toString(combustibles.get(size-1).getId()) + ","
+                + Integer.toString(combustibles.get(size).getCosto()) + "," + Integer.toString(combustibles.get(size).getId());
         cc.enviarMensajeParticular(temporal);
     }
     
