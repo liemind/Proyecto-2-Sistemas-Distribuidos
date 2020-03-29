@@ -6,6 +6,7 @@
 package servidorchat;
 
 import Model.Combustible;
+import Model.Estacion;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -54,7 +55,7 @@ public class PuenteConexiones  extends Thread
             {
                 this.log.info("Servidor a la espera de conexiones.");
                 this.socket = servidor.accept();
-                this.log.info("Cliente con la IP " + socket.getInetAddress().getHostName() + " conectado.");
+                this.log.info("Cliente con la IP " + socket.getInetAddress() + " conectado.");
                 ConexionCliente cc;
                 if(this.isServer)
                 {
@@ -68,6 +69,13 @@ public class PuenteConexiones  extends Thread
                     System.out.println("es cliente");
                     cc = new ConexionCliente(socket, mensajes, false);
                     cc.start();
+                    
+                    String ip =  socket.getInetAddress().toString();
+                    Estacion estacion = Proceso.buscarEstacion(ip);
+                    if(estacion==null)
+                    {
+                        Proceso.CrearEstacion(ip);
+                    }
                     //Una vez establecida la conexion se debe enviar precio de los combustibles
                     enviarCombustibles(cc);
                     
@@ -92,14 +100,21 @@ public class PuenteConexiones  extends Thread
         }
     }
     
+    /**
+     * Este metodo se encarga de reunir todos los datos de los combustibles y lo prepara como mensaje para que se pueda enviar masivamente a las estaciones
+     * @param cc 
+     */
     public void enviarCombustibles(ConexionCliente cc)
     {
         ArrayList<Combustible> combustibles = Proceso.ObtenerCombustibles();
         //envia al usuario los precios actuales del combustible EN ORDEN
         String temporal = null;
-        temporal = Integer.toString(combustibles.get(0).getCosto()) + "," + Integer.toString(combustibles.get(1).getCosto()) + "," + Integer.toString(combustibles.get(2).getCosto()) + "," + Integer.toString(combustibles.get(3).getCosto()) + "," + Integer.toString(combustibles.get(4).getCosto());
-        System.out.println("t: " + temporal);
-        
+        int size = combustibles.size()-1;
+        temporal = Integer.toString(combustibles.get(size-4).getCosto()) + "," + Integer.toString(combustibles.get(size-4).getId()) + ","
+                + Integer.toString(combustibles.get(size-3).getCosto()) + "," + Integer.toString(combustibles.get(size-3).getId()) + ","
+                + Integer.toString(combustibles.get(size-2).getCosto()) + "," + Integer.toString(combustibles.get(size-2).getId()) + ","
+                + Integer.toString(combustibles.get(size-1).getCosto()) + "," + Integer.toString(combustibles.get(size-1).getId()) + ","
+                + Integer.toString(combustibles.get(size).getCosto()) + "," + Integer.toString(combustibles.get(size).getId());
         cc.enviarMensajeParticular(temporal);
     }
     

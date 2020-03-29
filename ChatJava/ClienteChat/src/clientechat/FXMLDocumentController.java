@@ -55,6 +55,7 @@ public class FXMLDocumentController implements Initializable
         int costo;
         int finalLitros;
         Combustible cc;
+        String fechaHora;
         int idTransaccion = -1;
 
         if (ltr.isEmpty())
@@ -69,25 +70,16 @@ public class FXMLDocumentController implements Initializable
             if (!finalCombustible.isEmpty() && !finalSurtidor.isEmpty())
             {
                 finalLitros = Integer.parseInt(ltr);
-                cc = buscarCombustible(finalCombustible);
+                cc = Procesos.BuscarCombustible(finalCombustible);
                 costo = finalLitros * cc.getCosto();
+                fechaHora = Procesos.ObtenerFechaYHoraActual();
 
-                //bandera
-                System.out.println("TRANSACCION: " + finalSurtidor + " ," + finalCombustible + "," + ltr);
-                System.out.println("Combustible: " + cc.getNombre() + ", " + cc.getCosto() + "[" + cc.getId() + "]");
-                //end bandera
-
-                idTransaccion = crearTransaccion(Integer.parseInt(finalSurtidor), cc.getId(), finalLitros, costo);
+                idTransaccion = Procesos.CrearTransaccion(Integer.parseInt(finalSurtidor), cc.getId_comb_empresa(), finalLitros, costo, fechaHora);
 
                 if (idTransaccion!=-1)
                 {
                     total.setText(Integer.toString(costo));
-                    guardarSurtidor(Integer.parseInt(finalSurtidor));
-                    ClienteChat.surtidor = Integer.parseInt(finalSurtidor);
-                    //bandera
-                    System.out.println("Surtidor: " + finalSurtidor);
-                    //end bandera
-                    String transaccion = ObtenerTransaccion(idTransaccion);
+                    String transaccion = Procesos.ObtenerTransaccion(idTransaccion);
                     
                     if(transaccion != null)
                     {
@@ -134,47 +126,15 @@ public class FXMLDocumentController implements Initializable
         cliente.start();
 
         // TODO
-        llenarSurtidor();
-        //obtener combustible
-        obtenerCombustibles();
+        SurtidorComboBox();
         //llenar combustible
-        llenarCombustible();
-    }
-
-    /**
-     * Obtiene de la base de datos los combustibles del servidor.
-     *
-     */
-    public synchronized void obtenerCombustibles()
-    {
-
-        Statement stmt = null;
-        try
-        {
-            stmt = ClienteChat.conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM combustible;");
-
-            while (rs.next())
-            {
-                Combustible cc = new Combustible(rs.getString("nombre"), rs.getInt("costo"));
-                cc.setId(rs.getInt("id"));
-                this.combustibles.add(cc);
-            }
-            //end bandera
-            rs.close();
-            stmt.close();
-
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
+        CombustibleComboBox();
     }
 
     /**
      * Llena el surtidor en la ventana.
      */
-    private void llenarSurtidor()
+    private void SurtidorComboBox()
     {
         //surtidor = new ComboBox();
         this.surtidor.getItems().add("1");
@@ -188,9 +148,11 @@ public class FXMLDocumentController implements Initializable
      *
      * @param combustibles
      */
-    private void llenarCombustible()
+    private void CombustibleComboBox()
     {
-        for (Combustible c : this.combustibles)
+        //obtener combustible
+        ArrayList<Combustible> combustibles = Procesos.ObtenerCombustibles();
+        for (Combustible c : combustibles)
         {
             this.combustible.getItems().add(c.getNombre());
         }
@@ -220,149 +182,8 @@ public class FXMLDocumentController implements Initializable
         litros.clear();
         surtidor.getSelectionModel().clearSelection();
         combustible.getSelectionModel().clearSelection();
-
     }
 
-    /**
-     * Guarda en la base de datos local una transacción
-     *
-     * @param conn
-     * @param idSurtidor
-     * @param idCombustible
-     * @param litros
-     * @param costo
-     * @return
-     */
-    public int crearTransaccion(int idSurtidor, int idCombustible, int litros, int costo)
-    {
-        Statement stmt = null;
-        int idTransaccion =-1;
-        try
-        {
-            ClienteChat.conn.setAutoCommit(false);
-            //bandera
-            System.out.println("Transaccion: " + idSurtidor + "," + idCombustible + "," + litros + "," + costo);
-            //end bandera
-
-            stmt = ClienteChat.conn.createStatement();
-            String sql = "INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo) VALUES (" + idSurtidor + ", " + idCombustible + ", " + litros + ", " + costo + " );";
-            stmt.executeUpdate(sql);
-            ResultSet rs = stmt.executeQuery("SELECT id FROM transaccion ORDER BY id DESC LIMIT 1;");
-            
-            if (rs.next()) 
-            {
-                idTransaccion = Integer.parseInt(rs.getString("id"));
-            }
-            System.out.println("Id transaccion:  " + idTransaccion);
-            stmt.close();
-            ClienteChat.conn.commit();
-            //bandera
-            System.out.println("Crea la transaccion");
-            //end bandera
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            //bandera
-            System.out.println("No crea la transaccion");
-            //end bandera
-        }
-        return idTransaccion;
-    }
     
-    /*Obtiene:
-        id transaccion
-        id surtidor
-        id combustible
-        litros
-        costo
-    */
-    public String ObtenerTransaccion(int id)
-    {
-        Statement stmt = null;
-        String transaccion = "";
-        try
-        {
-            ClienteChat.conn.setAutoCommit(false);
-
-            stmt = ClienteChat.conn.createStatement();
-
-            ResultSet rs = stmt.executeQuery("SELECT * FROM transaccion WHERE id = " + id + ";");
-            
-            if (rs.next()) 
-            {
-                transaccion += rs.getString("id")+ "," + rs.getString("id_surtidor")+ "," + rs.getString("id_combustible")+ "," + rs.getString("litros")+ "," +  rs.getString("costo");
-            }
-            stmt.close();
-            ClienteChat.conn.commit();
-            //bandera
-            System.out.println("Obtiene la transaccion");
-            //end bandera
-            
-            return transaccion;
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            //bandera
-            System.out.println("No obtiene la transaccion");
-            //end bandera
-        }
-        
-        return null;
-    }
-
-    public Combustible buscarCombustible(String n)
-    {
-        for (Combustible cc : combustibles)
-        {
-            if (cc.getNombre().equalsIgnoreCase(n))
-            {
-                return cc;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Actualiza el numero de transacciones de un surtidor en la base de datos.
-     *
-     * @param id
-     * @return
-     */
-    public synchronized void guardarSurtidor(int id)
-    {
-        int trans = 0;
-
-        //seleccionar el surtidor
-        Statement stmt = null;
-        try
-        {
-            ClienteChat.conn.setAutoCommit(false);
-            stmt = ClienteChat.conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT transacciones FROM surtidor WHERE id = " + id + ";");
-
-            while (rs.next())
-            {
-                trans = rs.getInt("transacciones");
-            }
-
-            rs.close();
-            //sumar la transaccion
-            trans = trans + 1;
-
-            //guardar la transaccion
-            stmt.executeUpdate("UPDATE surtidor SET transacciones = " + trans + " WHERE id = " + id + ";");
-            ClienteChat.conn.commit();
-
-            stmt.close();
-
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-
-    }
 
 }

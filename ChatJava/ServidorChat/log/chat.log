@@ -148,3 +148,143 @@
 2020-03-28 03:10:43,766 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
 2020-03-28 03:10:53,004 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
 2020-03-28 03:10:53,005 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:45:44,896 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:45:45,140 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 01:45:45,147 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 01:45:45,149 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:46:29,317 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:46:29,553 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 01:46:29,562 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 01:46:29,564 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:50:08,772 [Thread-3] ERROR servidorchat.ServidorChat - Error: Address already in use: JVM_Bind
+2020-03-29 01:50:09,010 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 01:50:09,017 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 01:50:09,018 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:50:19,915 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:50:20,160 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 01:50:20,168 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 01:50:20,169 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:52:39,894 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:52:40,130 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 01:52:40,137 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 01:52:40,139 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:54:33,464 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:54:33,703 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 01:54:33,709 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 01:54:33,711 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:59:25,071 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 01:59:25,311 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 01:59:25,317 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 01:59:25,320 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:01:53,922 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:01:54,170 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:01:54,177 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:01:54,179 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:03:54,681 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:03:54,918 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:03:54,924 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:03:54,926 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:04:18,464 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:04:18,702 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:04:18,710 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:04:18,712 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:04:57,161 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:04:57,401 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:04:57,410 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:04:57,412 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:12:24,047 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:12:24,289 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:12:24,296 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:12:24,297 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:15:35,193 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:15:35,449 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:15:35,458 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:15:35,459 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:15:42,692 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:15:42,694 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:21:32,281 [Thread-6] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:21:38,749 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:21:38,750 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:21:51,487 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:22:50,755 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:22:50,756 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:24:35,958 [Thread-8] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:24:39,568 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:24:39,578 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:30:55,348 [Thread-3] ERROR servidorchat.ServidorChat - Error: Address already in use: JVM_Bind
+2020-03-29 02:30:55,583 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:30:55,589 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:30:55,591 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:32:39,825 [Thread-10] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:32:49,306 [Thread-3] ERROR servidorchat.ServidorChat - Error: Address already in use: JVM_Bind
+2020-03-29 02:32:49,580 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:32:49,587 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:32:49,588 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:32:55,085 [Thread-11] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:33:08,290 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:33:08,523 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:33:08,531 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:33:08,532 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:33:15,510 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:33:15,511 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:33:32,608 [Thread-6] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:35:17,424 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:35:17,667 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:35:17,674 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:35:17,676 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:35:24,470 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:35:24,471 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:40:04,580 [Thread-6] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:40:07,860 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:40:07,861 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:42:54,685 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:42:54,917 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 02:42:54,925 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:42:54,926 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:43:00,502 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:43:00,503 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:52:08,861 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:52:08,863 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:55:32,195 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 02:55:37,692 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 02:55:37,693 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 02:55:52,455 [Thread-8] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 03:21:49,235 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:21:49,574 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 03:21:49,590 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 03:21:49,593 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:21:57,588 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 03:21:57,589 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:41:08,337 [Thread-6] INFO  servidorchat.ConexionCliente - Cliente con la IP activate.navicat.com desconectado.
+2020-03-29 03:41:14,736 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:41:14,969 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 03:41:14,977 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 03:41:14,978 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:41:19,604 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 03:41:19,606 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:43:11,053 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:43:11,285 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 03:43:11,292 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP activate.navicat.com conectado.
+2020-03-29 03:43:11,293 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:43:50,368 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:43:50,613 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 03:43:50,618 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-03-29 03:43:50,619 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:43:58,491 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-03-29 03:43:58,492 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:56:52,550 [Thread-6] INFO  servidorchat.ConexionCliente - Cliente con la IP /127.0.0.1 desconectado.
+2020-03-29 03:57:16,719 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:57:16,932 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 03:57:16,938 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-03-29 03:57:16,939 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 03:57:21,410 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-03-29 03:57:21,411 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 04:28:26,266 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 04:28:26,483 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-03-29 04:28:26,488 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-03-29 04:28:26,489 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 04:28:54,160 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-03-29 04:28:54,181 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-03-29 04:30:10,541 [Thread-6] INFO  servidorchat.ConexionCliente - Cliente con la IP /127.0.0.1 desconectado.
+2020-03-29 04:30:15,624 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-03-29 04:30:15,625 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
