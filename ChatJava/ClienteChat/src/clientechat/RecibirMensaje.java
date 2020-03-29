@@ -83,32 +83,29 @@ public class RecibirMensaje extends Thread
     
     public void guardarCombustible(String precios)//public synchronized void guardarCombustible(String precios)
     {
-        System.out.println("recibio las bencinas");
         precios = precios.trim();
         String[] preciosString = precios.split(",");
         ArrayList<Combustible> arr = new ArrayList<Combustible>();
         Combustible c;
-        int i, tipoCombustible = 93;
+        int i, cont, tipoCombustible = 93;
         
-        for (i = 0; i < preciosString.length; i++)
+        for (i = 0, cont = 1; i < preciosString.length; i+=2, cont++)
         {
-            System.out.println("bencina: " + preciosString[i]);
-
-            if (i < 3)
+            if (i < 5)
             {
-                c = new Combustible(Integer.toString(tipoCombustible), Integer.parseInt(preciosString[i]));
+                c = new Combustible(Integer.toString(tipoCombustible), Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
                 tipoCombustible += 2;
             }
-            else if (i == 3)
+            else if (i == 6)
             {
-                c = new Combustible("Diesel", Integer.parseInt(preciosString[i]));
+                c = new Combustible("Diesel", Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
             }
             else
             {
-                c = new Combustible("Kerosene", Integer.parseInt(preciosString[i]));
+                c = new Combustible("Kerosene", Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
             }
 
-            c.setId(i + 1);
+            c.setId(cont);
             arr.add(c);
         }
         

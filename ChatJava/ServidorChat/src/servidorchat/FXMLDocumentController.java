@@ -75,12 +75,14 @@ public class FXMLDocumentController implements Initializable
 
         //Obtener combustibles
         ArrayList<Combustible> cc = Proceso.ObtenerCombustibles();
+        int size = cc.size()-1;
+        System.out.println("tam combustibles: " + cc.size());
         //Setear combustibles.
-        noventaytres.setText(Integer.toString(cc.get(0).getCosto()));
-        noventaycinco.setText(Integer.toString(cc.get(1).getCosto()));
-        noventaysiete.setText(Integer.toString(cc.get(2).getCosto()));
-        diesel.setText(Integer.toString(cc.get(3).getCosto()));
-        kerosene.setText(Integer.toString(cc.get(4).getCosto()));
+        noventaytres.setText(Integer.toString(cc.get(size-4).getCosto()));
+        noventaycinco.setText(Integer.toString(cc.get(size-3).getCosto()));
+        noventaysiete.setText(Integer.toString(cc.get(size-2).getCosto()));
+        diesel.setText(Integer.toString(cc.get(size-1).getCosto()));
+        kerosene.setText(Integer.toString(cc.get(size).getCosto()));
         
         /*Clase encargada de realizar las consultas a la base de datos*/
         this.proceso = new Proceso();
@@ -88,7 +90,7 @@ public class FXMLDocumentController implements Initializable
 
     public void cambiarNumero()
     {
-        String n3, n5, n7, dies, keros;
+        String n3, n5, n7, dies, keros, fecha_hora;
         int finalNoventaytres, finalNoventaycinco, finalNoventaisiete, finalDiesel, finalKerosene;
         ArrayList<Combustible> finalc = new ArrayList<>();
         Combustible c;
@@ -98,39 +100,39 @@ public class FXMLDocumentController implements Initializable
         n7 = noventaysiete.getText();
         dies = diesel.getText();
         keros = kerosene.getText();
-
+        fecha_hora=Proceso.ObtenerFechaYHoraActual();
         if (!n3.isEmpty())
         {
             finalNoventaytres = Integer.parseInt(n3);
-            c = new Combustible("93", finalNoventaytres);
+            c = new Combustible("93", finalNoventaytres, fecha_hora);
             c.setId(1);
             finalc.add(c);
         }
         if (!n5.isEmpty())
         {
             finalNoventaycinco = Integer.parseInt(n5);
-            c = new Combustible("95", finalNoventaycinco);
+            c = new Combustible("95", finalNoventaycinco, fecha_hora);
             c.setId(2);
             finalc.add(c);
         }
         if (!n7.isEmpty())
         {
             finalNoventaisiete = Integer.parseInt(n7);
-            c = new Combustible("97", finalNoventaisiete);
+            c = new Combustible("97", finalNoventaisiete, fecha_hora);
             c.setId(3);
             finalc.add(c);
         }
         if (!dies.isEmpty())
         {
             finalDiesel = Integer.parseInt(dies);
-            c = new Combustible("Diesel", finalDiesel);
+            c = new Combustible("Diesel", finalDiesel, fecha_hora);
             c.setId(4);
             finalc.add(c);
         }
         if (!keros.isEmpty())
         {
             finalKerosene = Integer.parseInt(keros);
-            c = new Combustible("Kerosene", finalKerosene);
+            c = new Combustible("Kerosene", finalKerosene, fecha_hora);
             c.setId(5);
             finalc.add(c);
         }
@@ -142,11 +144,11 @@ public class FXMLDocumentController implements Initializable
                 finalc.get(i).save(ServidorChat.conn);
                 if(i<finalc.size()-1)
                 {
-                    mensaje += finalc.get(i).getCosto() + ",";
+                    mensaje += finalc.get(i).getCosto() + "," + finalc.get(i).getId_comb() + ","  ;
                 }
                 else
                 {
-                    mensaje += finalc.get(i).getCosto();
+                    mensaje += finalc.get(i).getCosto() + "," + finalc.get(i).getId_comb();
                 }
             }
             this.conexion.enviarMensaje(mensaje);

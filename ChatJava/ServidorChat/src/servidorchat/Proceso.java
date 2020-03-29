@@ -10,6 +10,8 @@ import Model.Estacion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +22,6 @@ public class Proceso
 {
 
     //private ArrayList<Combustible> cc;
-
     public Proceso()
     {
         //this.cc = new ArrayList<>();
@@ -42,8 +43,9 @@ public class Proceso
 
             while (rs.next())
             {
-                Combustible combustible = new Combustible(rs.getString("nombre"), rs.getInt("costo"));
+                Combustible combustible = new Combustible(rs.getString("nombre"), rs.getInt("costo"), rs.getString("fecha_hora"));
                 combustible.setId(rs.getInt("id"));
+                //System.out.println("combustible: " + combustible.getNombre() + " " + combustible.getId());
                 combustibles.add(combustible);
             }
             //end bandera
@@ -111,7 +113,6 @@ public class Proceso
         Statement stmt = null;
         try
         {
-
             //consultar estacion
             String sql = "SELECT count(*) FROM estacion WHERE nombre = '" + nombreE + "';";
             ServidorChat.conn.setAutoCommit(false);
@@ -234,7 +235,7 @@ public class Proceso
         return 0;
     }
 
-    public static synchronized boolean crearTransaccion(int id_surtidor, int id_combustible, int litros, int costo)
+    /*public static synchronized boolean crearTransaccion(int id_surtidor, int id_combustible, int litros, int costo, String fecha_hora)
     {
         Statement stmt = null;
         try
@@ -243,8 +244,8 @@ public class Proceso
             ServidorChat.conn.setAutoCommit(false);
 
             stmt = ServidorChat.conn.createStatement();
-            String sql = "INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo) "
-                    + "VALUES (" + id_surtidor + ", " + id_combustible + ", " + litros + ", " + costo + " );";
+            String sql = "INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo, fecha_hora) "
+                    + "VALUES (" + id_surtidor + ", " + id_combustible + ", " + litros + ", " + costo + ", " + fecha_hora + " );";
             stmt.executeUpdate(sql);
             stmt.close();
             ServidorChat.conn.commit();
@@ -256,8 +257,79 @@ public class Proceso
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return false;
+    }*/
+    
+    
+    /**
+     * Guarda en la base de datos local una transacción
+     *
+     * @param conn
+     * @param idSurtidor
+     * @param idCombustible
+     * @param litros
+     * @param fecha_hora
+     * @param costo
+     * @return
+     */
+    public static int CrearTransaccion(String ip, int idSurtidor, int idCombustible, int litros, int costo, String fecha_hora)
+    {
+        Statement stmt = null;
+        int idTransaccion = -1;
+        try
+        {
+            ServidorChat.conn.setAutoCommit(false);
+            //bandera
+            System.out.println("Transaccion: " + ip + "," + idSurtidor + "," + idCombustible + "," + litros + "," + costo + ","+fecha_hora);
+            //end bandera
+
+            stmt = ServidorChat.conn.createStatement();
+            String sql = "INSERT INTO transaccion (id_estacion, id_surtidor, id_combustible, litros, costo, fecha_hora) VALUES ( '" + ip + "', " + idSurtidor + ", " + idCombustible + ", " + litros + ", " + costo + ", '" + fecha_hora + "' );";
+            stmt.execute(sql);
+            ResultSet rs = stmt.executeQuery("SELECT id FROM transaccion ORDER BY id DESC LIMIT 1;");
+
+            if (rs.next())
+            {
+                idTransaccion = Integer.parseInt(rs.getString("id"));
+            }
+            System.out.println("Id transaccion:  " + idTransaccion);
+            stmt.close();
+            ServidorChat.conn.commit();
+            //bandera
+            System.out.println("Crea la transaccion");
+            //end bandera
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            //bandera
+            System.out.println("No crea la transaccion");
+            //end bandera
+        }
+        return idTransaccion;
     }
     
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static String ObtenerFechaYHoraActual()
+    {
+        String formato = "yyyy-MM-dd HH:mm:ss";
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
+        LocalDateTime ahora = LocalDateTime.now();
+        return formateador.format(ahora);
+    }
 }

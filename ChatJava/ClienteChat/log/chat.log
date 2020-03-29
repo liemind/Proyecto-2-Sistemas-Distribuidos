@@ -130,3 +130,102 @@
 2020-03-28 19:02:38,813 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
 2020-03-28 19:02:38,817 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
 2020-03-28 19:02:38,817 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:12:33,869 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:12:35,879 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:12:35,879 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:12:35,882 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:12:35,883 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:18:21,237 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:18:23,250 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:18:23,250 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:18:23,253 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:18:23,253 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:35:41,023 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:35:43,034 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:35:43,035 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:35:43,038 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:35:43,038 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:37:35,250 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:37:37,261 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:37:37,261 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:37:37,263 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:37:37,263 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:39:37,993 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:39:40,002 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:39:40,002 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:39:40,005 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:39:40,005 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:40:18,424 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:40:20,434 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:40:20,435 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:40:20,438 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:40:20,438 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:48:59,301 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:49:01,311 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:49:01,311 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:49:01,314 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:49:01,314 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:52:00,909 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:52:02,919 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:52:02,920 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:52:02,921 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:52:02,921 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:52:15,716 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:52:17,727 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:52:17,727 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:52:17,729 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:52:17,729 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:52:52,032 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:52:54,044 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:52:54,045 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:52:54,048 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:52:54,048 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:54:18,976 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:54:20,988 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:54:20,989 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:54:20,991 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:54:20,991 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:57:26,888 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:57:28,901 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:57:28,901 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:57:28,904 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:57:28,905 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:57:45,259 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:57:47,272 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:57:47,272 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:57:47,276 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:57:47,276 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:59:08,951 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-28 21:59:10,962 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-28 21:59:10,962 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-28 21:59:10,966 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-28 21:59:10,966 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-29 02:14:52,163 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:14:54,177 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-29 02:14:54,177 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-29 02:14:54,180 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-29 02:14:54,181 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-29 02:15:42,684 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:21:38,739 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:22:50,746 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:24:39,560 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:32:59,012 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-29 02:33:15,502 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:35:24,458 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:40:07,851 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:42:38,172 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-29 02:43:00,493 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:52:08,851 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:55:37,683 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 02:59:23,108 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-29 03:21:57,577 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 03:41:19,596 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 03:41:45,665 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
+2020-03-29 03:41:52,821 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 03:41:54,832 [JavaFX Application Thread] ERROR clientechat.ClienteChat - No se ha podido conectar con el servidor (Connection refused: connect).
+2020-03-29 03:41:54,832 [JavaFX Application Thread] ERROR clientechat.ConexionServidor - El socket no se creo correctamente. 
+2020-03-29 03:41:54,836 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-29 03:41:54,837 [Thread-4] ERROR clientechat.ClienteChat - El socket no se creo correctamente. 
+2020-03-29 03:43:58,483 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 03:57:21,402 [JavaFX Application Thread] INFO  clientechat.ClienteChat - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Usuario.
+2020-03-29 04:04:03,946 [Thread-4] ERROR clientechat.ClienteChat - Error al leer del stream de entrada: Connection reset
