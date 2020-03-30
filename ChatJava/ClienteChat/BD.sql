@@ -17,23 +17,25 @@ CREATE TABLE transaccion(
    FOREIGN KEY(id_combustible) REFERENCES combustible(id)
 );
 
+
+
 /*
 * Insert
 */
 
-INSERT INTO combustible (nombre,costo)
+INSERT INTO combustible (id_comb_empresa, nombre,costo)
 VALUES ('93', 1, 10);
 
-INSERT INTO combustible (nombre,costo)
+INSERT INTO combustible (id_comb_empresa, nombre,costo)
 VALUES ('95', 2, 10);
 
-INSERT INTO combustible (nombre,costo)
+INSERT INTO combustible (id_comb_empresa, nombre,costo)
 VALUES ('97', 3, 10);
 
-INSERT INTO combustible (nombre,costo)
+INSERT INTO combustible (id_comb_empresa, nombre,costo)
 VALUES ('Diesel', 4, 10);
 
-INSERT INTO combustible (nombre,costo)
+INSERT INTO combustible (id_comb_empresa, nombre,costo)
 VALUES ('Kerosene', 5, 10);
 
 INSERT INTO surtidor(transacciones)

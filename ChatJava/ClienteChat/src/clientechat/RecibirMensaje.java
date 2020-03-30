@@ -9,6 +9,7 @@ import Model.Combustible;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.Connection;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
@@ -87,41 +88,44 @@ public class RecibirMensaje extends Thread
         String[] preciosString = precios.split(",");
         ArrayList<Combustible> arr = new ArrayList<Combustible>();
         Combustible c;
+        Connection conn;
         int i, cont, tipoCombustible = 93;
         
-        for (i = 0, cont = 1; i < preciosString.length; i+=2, cont++)
-        {
-            if (i < 5)
-            {
-                c = new Combustible(Integer.toString(tipoCombustible), Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
-                tipoCombustible += 2;
-            }
-            else if (i == 6)
-            {
-                c = new Combustible("Diesel", Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
-            }
-            else
-            {
-                c = new Combustible("Kerosene", Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
-            }
+        try {
+            conn = Procesos.conectar("estacion.db");
+            for (i = 0, cont = 1; i < preciosString.length; i+=2, cont++) {
+                if (i < 5) {
+                    c = new Combustible(Integer.toString(tipoCombustible), Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
+                    tipoCombustible += 2;
+                }
+                else if (i == 6) {
+                    c = new Combustible("Diesel", Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
+                }
+                else {
+                    c = new Combustible("Kerosene", Integer.parseInt(preciosString[i]), Integer.parseInt(preciosString[i+1]));
+                }
 
-            c.setId(cont);
-            arr.add(c);
+                c.setId(cont);
+                arr.add(c);
+            }
+            
+            //save all
+            for (Combustible comb : arr) {
+                if (comb.save(conn))
+                {
+                    System.out.println("La actualizacion de " + comb.getNombre() + " fue hecha con éxito");
+                }
+                else
+                {
+                    System.out.println("La actualizacion de " + comb.getNombre() + " no pudo realizarse");
+                }
+            }
+            conn.close();
+            
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         
-        //save all
-        for (Combustible comb : arr)
-        {
-            if (comb.save(ClienteChat.conn))
-            {
-                System.out.println("La actualizacion de " + comb.getNombre() + " fue hecha con éxito");
-            }
-            else
-            {
-                System.out.println("La actualizacion de " + comb.getNombre() + " no pudo realizarse");
-            }
-        }
-       
     }
     
 }

@@ -52,7 +52,10 @@ public class ServidorChat extends Application
    */
    public static Connection conectar() {
         Connection c = null;
-        String url = "C:\\Users\\yorch\\Desktop\\ChatJava\\ServidorChat\\empresa.db";
+        String bd = "empresa.db";
+        String dir = System.getProperty("user.dir");
+        String url = dir+"\\"+bd;
+        
         try {
            Class.forName("org.sqlite.JDBC");
            c = DriverManager.getConnection("jdbc:sqlite:"+url);

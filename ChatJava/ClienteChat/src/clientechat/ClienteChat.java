@@ -20,31 +20,7 @@ public class ClienteChat extends Application//extends JFrame
 {
 
     private Logger log = Logger.getLogger(ClienteChat.class);
-    //string de conección de la bd
-    static public Connection conn;
-
-    /**
-     * Conecta el programa con la base de datos (SQLite)
-     *
-     * @return la conección a la bd.
-     */
-    public static Connection conectar()
-    {
-        Connection c = null;
-        String url = "C:\\Users\\yorch\\Desktop\\ChatJava\\ClienteChat\\estacion.db";
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + url);
-            System.out.println("Base de datos Conectada");
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-        return c;
-    }
+    
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -68,8 +44,6 @@ public class ClienteChat extends Application//extends JFrame
     {
         // Carga el archivo de configuracion de log4J
         PropertyConfigurator.configure("log4j.properties");
-        conn = conectar();
-        
         launch(args);
         
         
