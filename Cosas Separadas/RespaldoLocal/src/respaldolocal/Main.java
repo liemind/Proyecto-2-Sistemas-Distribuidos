@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -33,7 +35,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        Calendar calendario = Calendar.getInstance();
         
         //Carpeta del usuario
         String dir = System.getProperty("user.dir");
@@ -41,7 +43,8 @@ public class Main {
         
         System.out.println("Carpeta del usuario = " + dir);
         
-        
+        RespaldoCliente.crearRespaldoCliente(calendario);
+        //limpieza();
         
         /*
         int hora, minutos;
@@ -70,8 +73,7 @@ public class Main {
         
     }
     
-    public static synchronized ArrayList ObtenerCombustibles()
-    {
+    public static synchronized ArrayList ObtenerCombustibles() {
         Connection conn = null;
         ArrayList<Combustible> combustibles = new ArrayList<>();
         Statement stmt = null;
@@ -102,69 +104,121 @@ public class Main {
         return null;
     }
 
+    public static synchronized ArrayList ObtenerCombustibles(Connection conn) {
+        ArrayList<Combustible> combustibles = new ArrayList<>();
+        Statement stmt = null;
+        try
+        {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM combustible;");
+
+            while (rs.next())
+            {
+                Combustible cc = new Combustible(rs.getString("nombre"), rs.getInt("costo"), rs.getInt("id_comb_empresa"));
+                cc.setId(rs.getInt("id"));
+                combustibles.add(cc);
+            }
+            //end bandera
+            rs.close();
+            stmt.close();
+            return combustibles;
+
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+
+        return null;
+    }
+    
+    
     
     public static Connection conectar(String bd) {
         Connection c = null;
         String dir = System.getProperty("user.dir");
         String url = dir+"\\"+bd;
         try {
-           Class.forName("org.sqlite.JDBC");
-           c = DriverManager.getConnection("jdbc:sqlite:"+url);
-           System.out.println("Base de datos Conectada");
-           if (c == null) {
-               //abre el respaldo
-               bd = ultimoRespaldo();
-               if(bd.isEmpty()) {
-                   url = dir+"\\";
-                   //significa que no existe un respaldo al que atenerse. En tal caso, mejor crear la base de datos.
-                   /*
-                   bd = "empresa.db";
-                   c = crearBasedeDatos(bd, url);
-                   if(crearTablas(c)) {
-                        System.out.println("Tablas creadas.");
-                    }
-
-                    if(llenarDatos(c)) {
-                        System.out.println("Datos respaldados");
-                    }
-                   */
-                    return c;
-               }
-               else {
-                   //si existe, hay que acceder a este
-                   url = dir+"\\bdrespaldo\\"+bd;
-                   c = DriverManager.getConnection("jdbc:sqlite:"+url);
-                   System.out.println("Base de datos de respaldo conectada");
-               }
-           }
-           else {
-               //se deben sincronizar los datos.
-               //buscar ultimo data log.
-               String baseDeDatos = ultimaBasedeDatos();
-               if(!baseDeDatos.equals(bd)) {
-                   //debe hacerse la sincronización de datos. En este momento, los datos de la base de datos de respaldo son mucho más actuales que la base de datos actual, por lo que debe ser actualizada.
-                   if(Sincronizacion(bd, ultimaBasedeDatos(), conn)) {
-                       System.out.println("Sincronizacion completada.");
-                   }
-               }
-           }
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:"+url);
+            System.out.println("Base de datos Conectada");
            
+            //se deben sincronizar los datos.
+            //buscar ultimo data log.
+            String baseDeDatos = ultimaBasedeDatos();
+            if(!baseDeDatos.equals(bd)) {
+                //debe hacerse la sincronización de datos. En este momento, los datos de la base de datos de respaldo son mucho más actuales que la base de datos actual, por lo que debe ser actualizada.
+                System.out.println("deberia hacerse una sincronizacion aca");
+                if(Sincronizacion(bd, baseDeDatos, c)) {
+                    System.out.println("Sincronizacion completada.");
+                }
+            }
+        //registro de la bd
+        logBd(bd);   
         } catch ( Exception e ) {
-           System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-           return null;
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            c = abrirRespaldo(bd, dir);
+            return c;
         }
         
         return c;
    }
     
+    public static Connection abrirRespaldo(String bd, String dir) {
+        try {
+            //abre el respaldo
+            bd = ultimoRespaldo();
+            System.out.println("Abriendo respaldo");
+            String url = dir+"\\bdrespaldo\\"+bd;
+            conn = DriverManager.getConnection("jdbc:sqlite:"+url);
+            System.out.println("Base de datos de respaldo conectada");
+            return conn;
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return null;
+        }
+    }
+    
     public static boolean Sincronizacion(String actualBD, String anteriorBD, Connection actualConn) {
-        Connection c = null;
+        Connection connAnterior = null;
+        Statement stmtAnterior = null;
         String dir = System.getProperty("user.dir");
         String url = dir+"\\bdrespaldo\\"+anteriorBD;
         try {
            Class.forName("org.sqlite.JDBC");
-           c = DriverManager.getConnection("jdbc:sqlite:"+url);
-           
+           connAnterior = DriverManager.getConnection("jdbc:sqlite:"+url);
+           if(connAnterior != null) {
+                //1. traspasar valores del combustible
+                ArrayList<Combustible> combustibles = ObtenerCombustibles(connAnterior);
+                if(combustibles != null) {
+                    for (Combustible combustible : combustibles) {
+                        combustible.save(actualConn);
+                    }
+                }
+                
+                //2. consultar la fecha de la ultima transaccion en la bd anterior.
+                Transaccion t = obtenerUltimaTransaccion(connAnterior);
+                
+                //3. consultar cantidad de transacciones con fecha superior a la de la ultima transaccion
+                stmtAnterior = connAnterior.createStatement();
+                String sql = "SELECT * FROM transaccion WHERE  date(fecha_hora) >= date('"+t.getFechaHora()+"');";
+                ResultSet rs = stmtAnterior.executeQuery(sql);
+                ArrayList<Transaccion> transacciones = new ArrayList<>();
+                
+                if (rs.next())
+                {
+                    Transaccion temporal = new Transaccion(rs.getInt("id_surtidor"),rs.getInt("id_combustible"),rs.getInt("litros"),rs.getInt("costo"));
+                    temporal.setId(rs.getInt("id"));
+                    temporal.setFechaHora(rs.getString("fecha_hora"));
+                    
+                    transacciones.add(temporal);
+                }
+                
+                //4. guardar 
+               for (Transaccion transaccion : transacciones) {
+                   transaccion.save(actualConn);
+               }
+           }
            
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -173,21 +227,52 @@ public class Main {
     }
     
     /**
+     * Obtiene la última transacción de una base de datos.
+     * @param conn string de conexión.
+     * @return un objeto de tipo Transacción.
+     */
+    public static Transaccion obtenerUltimaTransaccion(Connection conn) {
+        Statement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM transaccion ORDER BY id DESC LIMIT 1";
+            ResultSet rs = stmt.executeQuery(sql);
+            Transaccion t = null;
+            
+            if (rs.next())
+            {
+                t = new Transaccion(rs.getInt("id_surtidor"),rs.getInt("id_combustible"),rs.getInt("litros"),rs.getInt("costo"));
+                t.setId(rs.getInt("id"));
+                t.setFechaHora(rs.getString("fecha_hora"));
+            }
+            return t;
+            
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return null;
+    }
+    
+    
+    /**
      * Guarda en una base de datos oculta, la ultima conexion de la bd.
      * @param nombre nombre de la base de datos.
      */
     public static void logBd(String nombre) {
         String dir = System.getProperty("user.dir");
-        String bd = "files.db";
+        String bd = "procesos.db";
         Connection logconn = null;
         Statement stmt = null;
-        Calendar calendario = Calendar.getInstance();
-        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String fecha = formato.format(calendario);
+        String fecha = ObtenerFechaYHoraActual();
         
         try {
-           logconn = conectar(bd);
-           System.out.println("Base de datos de respaldo conectado");
+           String url = dir+"\\"+bd;
+            System.out.println("url respaldo: "+url);
+           Class.forName("org.sqlite.JDBC");
+           logconn = DriverManager.getConnection("jdbc:sqlite:"+url);
+           
+           System.out.println("Base de datos de registro conectado");
            logconn.setAutoCommit(false);
            stmt = logconn.createStatement();
            
@@ -197,6 +282,7 @@ public class Main {
            stmt.close();
            logconn.commit();
            logconn.close();
+            System.out.println("Registro completado");
         } catch ( Exception e ) {
            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
@@ -262,31 +348,10 @@ public class Main {
         
         if(archivos.length > 5) {
             System.out.println("Iniciando limpieza... ");
-            //inicio insertsort
-            int n = archivos.length; 
-            for (int i = 1; i < n; ++i) {
-                
-                File key = archivos[i];
-                int j = i - 1; 
-
-                while (j >= 0 && formato.format(archivos[j].lastModified()).compareTo(formato.format(key.lastModified())) > 0) {
-                    archivos[j + 1] = archivos[j]; 
-                    j = j - 1; 
-                } 
-                archivos[j + 1] = key; 
-            } 
-            //fin insersort
-            
-            //alrevez
-            int j = 0;
-            for (int i = archivos.length-1; i >= 0; i--) {
-                respaldos[j] = archivos[i];
-                j++;
-            }
             
             //delete
-            for (int i = cantidadAEliminar-1; i < respaldos.length; i++) {
-                File del = respaldos[i];
+            for (int i = archivos.length-cantidadAEliminar; i > 0; i--) {
+                File del = archivos[i];
                 if(del.delete()) {
                     System.out.println("Borrando: "+del.getName());
                 }
@@ -307,7 +372,7 @@ public class Main {
      */
     public static String ultimaBasedeDatos() {
         String dir = System.getProperty("user.dir");
-        String bd = "files.db";
+        String bd = "procesos.db";
         String url = dir+"\\"+bd;
         Connection logconn = null;
         Statement stmt = null;
@@ -316,7 +381,6 @@ public class Main {
         try {
            Class.forName("org.sqlite.JDBC");
            logconn = DriverManager.getConnection("jdbc:sqlite:"+url);
-           System.out.println("Base de datos de respaldo conectado");
            logconn.setAutoCommit(false);
            stmt = logconn.createStatement();
            
@@ -324,6 +388,7 @@ public class Main {
 
             while ( rs.next() ) {
                nombre = rs.getString("nombre");
+                System.out.println("N: "+nombre);
             }
            
            stmt.close();
@@ -335,6 +400,18 @@ public class Main {
            return nombre;
         }
         
+    }
+    
+    /**
+     * Obtiene la fecha y hora actual del sistema.
+     * @return fecha
+     */
+    public static String ObtenerFechaYHoraActual()
+    {
+        String formato = "yyyy-MM-dd HH:mm:ss";
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
+        LocalDateTime ahora = LocalDateTime.now();
+        return formateador.format(ahora);
     }
     
 }

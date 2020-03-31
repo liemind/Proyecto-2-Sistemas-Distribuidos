@@ -1,7 +1,5 @@
 package clientechat;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;

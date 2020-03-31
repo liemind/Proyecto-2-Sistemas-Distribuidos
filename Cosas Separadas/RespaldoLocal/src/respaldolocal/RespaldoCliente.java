@@ -75,12 +75,15 @@ public class RespaldoCliente {
         System.out.println("Inicio del respaldo");
         //Carpeta del usuario
         String dir = System.getProperty("user.dir");
-        dir = dir+"\\bdrespaldo";
+        dir = dir+"\\bdrespaldo\\";
+        //bandera
+        System.out.println(dir);
+        //end bandera
         
         Connection conn2 = null; //coneccion a la nueva bd
         String finalNBD = "estacion"; //nombre de la base de datos
         int hora, minutos, dia, mes, year;
-        String ruta = "jdbc:sqlite:C:"+dir;
+        String ruta = "jdbc:sqlite:"+dir;
         
         hora =calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE);
@@ -200,7 +203,8 @@ public class RespaldoCliente {
             if(transacciones != null) {
                 //guardar
                 for (Transaccion tra : transacciones) {
-                    tra.save(conn2);
+                    //tra.save(conn2);
+                    System.out.println("T: "+tra.getId());
                 }
             }
             
@@ -224,7 +228,12 @@ public class RespaldoCliente {
      * FIN PROCESOS RELACIONADOS CON ARCHIVOS DE RESPALDO
     */
     
+    /**
+     * PROCESOS RELACIONADOS CON ARCHIVOS DE SINCRONIZACION
+     */
     
     
-    
+    /**
+     * FIN PROCESOS RELACIONADOS CON ARCHIVOS DE SINCRONIZACION
+     */
 }

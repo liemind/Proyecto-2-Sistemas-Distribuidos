@@ -27,7 +27,7 @@ public class Procesos
 {
     /**
      * Conecta el programa con la base de datos (SQLite)
-     *
+     * @param bd el nombre de la base de datos a conectar.
      * @return la conección a la bd.
      */
     public static Connection conectar(String bd)
@@ -52,8 +52,6 @@ public class Procesos
     
     /**
      * Guarda en la base de datos local una transacción
-     *
-     * @param conn
      * @param idSurtidor
      * @param idCombustible
      * @param litros
@@ -101,12 +99,10 @@ public class Procesos
         return idTransaccion;
     }
 
-    /*Obtiene:
-        id transaccion
-        id surtidor
-        id combustible
-        litros
-        costo
+    /**
+     * Obtiene los datos de una tranacción segun su ID.
+     * @param id id de la transacción.
+     * @return un string comprimido con los datos de la transacción.
      */
     public static String ObtenerTransaccion(int id)
     {
@@ -144,7 +140,12 @@ public class Procesos
 
         return null;
     }
-
+    
+    /**
+     * Según el nombre de un combustible, busca este en un arreglo global.
+     * @param n el nombre del combustible a enviar.
+     * @return un objeto de tipo combustible.
+     */
     public static Combustible BuscarCombustible(String n)
     {
         ArrayList<Combustible> combustibles = new ArrayList<>();
@@ -161,8 +162,7 @@ public class Procesos
     
     /**
      * Obtiene de la base de datos los combustibles del servidor.
-     *
-     * @return
+     * @return El arraylist de combustible.
      */
     public static synchronized ArrayList ObtenerCombustibles()
     {
@@ -195,8 +195,41 @@ public class Procesos
 
         return null;
     }
-
     
+    public static synchronized ArrayList ObtenerCombustibles(Connection conn) {
+        ArrayList<Combustible> combustibles = new ArrayList<>();
+        Statement stmt = null;
+        try
+        {
+            conn = conectar("estacion.db");
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM combustible;");
+
+            while (rs.next())
+            {
+                Combustible cc = new Combustible(rs.getString("nombre"), rs.getInt("costo"), rs.getInt("id_comb_empresa"));
+                cc.setId(rs.getInt("id"));
+                combustibles.add(cc);
+            }
+            //end bandera
+            rs.close();
+            stmt.close();
+            return combustibles;
+
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+
+        return null;
+    }
+    
+    
+    /**
+     * Obtiene la fecha y hora actual en el servidor.
+     * @return un string con la fecha y hora según el formato establecido.
+     */
     public static String ObtenerFechaYHoraActual()
     {
         String formato = "yyyy-MM-dd HH:mm:ss";
@@ -305,31 +338,10 @@ public class Procesos
         
         if(archivos.length > 5) {
             System.out.println("Iniciando limpieza... ");
-            //inicio insertsort
-            int n = archivos.length; 
-            for (int i = 1; i < n; ++i) {
-                
-                File key = archivos[i];
-                int j = i - 1; 
-
-                while (j >= 0 && formato.format(archivos[j].lastModified()).compareTo(formato.format(key.lastModified())) > 0) {
-                    archivos[j + 1] = archivos[j]; 
-                    j = j - 1; 
-                } 
-                archivos[j + 1] = key; 
-            } 
-            //fin insersort
-            
-            //alrevez
-            int j = 0;
-            for (int i = archivos.length-1; i >= 0; i--) {
-                respaldos[j] = archivos[i];
-                j++;
-            }
             
             //delete
-            for (int i = cantidadAEliminar-1; i < respaldos.length; i++) {
-                File del = respaldos[i];
+            for (int i = archivos.length-cantidadAEliminar; i > 0; i--) {
+                File del = archivos[i];
                 if(del.delete()) {
                     System.out.println("Borrando: "+del.getName());
                 }

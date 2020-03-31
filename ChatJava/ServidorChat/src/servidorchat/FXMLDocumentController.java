@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -98,6 +99,7 @@ public class FXMLDocumentController implements Initializable
         int finalNoventaytres, finalNoventaycinco, finalNoventaisiete, finalDiesel, finalKerosene;
         ArrayList<Combustible> finalc = new ArrayList<>();
         Combustible c;
+        Connection conn = null;
 
         n3 = noventaytres.getText();
         n5 = noventaycinco.getText();
@@ -143,9 +145,10 @@ public class FXMLDocumentController implements Initializable
         if (!finalc.isEmpty())
         {
             String mensaje = "";
+            conn = Proceso.conectar("empresa.db");
             for(int i=0;i<finalc.size();i++)
             {
-                finalc.get(i).save(ServidorChat.conn);
+                finalc.get(i).save(conn);
                 if(i<finalc.size()-1)
                 {
                     mensaje += finalc.get(i).getCosto() + "," + finalc.get(i).getId_comb() + ","  ;

@@ -9,5 +9,6 @@ CREATE TABLE log(
 CREATE TABLE transacciones_enviadas(
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    id_transaccion INTEGER NOT NULL,
+   nombre TEXT NOT NULL,
    envio INTEGER NOT NULL
 );
