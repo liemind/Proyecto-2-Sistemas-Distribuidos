@@ -171,6 +171,11 @@ public class RespaldoCliente {
         return false;
     }
     
+    /**
+     * Llena la base de datos con datos de la base de datos original.
+     * @param conn2
+     * @return 
+     */
     public static boolean llenarDatos(Connection conn2) {
         Statement stmt = null;
         Statement stmt2 = null;

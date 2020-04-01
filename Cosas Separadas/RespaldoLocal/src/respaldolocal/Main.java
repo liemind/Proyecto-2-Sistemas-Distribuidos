@@ -37,13 +37,14 @@ public class Main {
         // TODO code application logic here
         Calendar calendario = Calendar.getInstance();
         
-        //Carpeta del usuario
-        String dir = System.getProperty("user.dir");
-        dir = dir+"\\bdrespaldo";
+        try {
+            Hilos hilo = new Hilos();
+            hilo.start();
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
         
-        System.out.println("Carpeta del usuario = " + dir);
-        
-        RespaldoCliente.crearRespaldoCliente(calendario);
+        //RespaldoCliente.crearRespaldoCliente(calendario);
         //limpieza();
         
         /*
@@ -54,9 +55,6 @@ public class Main {
         hora =calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE);
         
-        
-        //conectar("estacion.db", "C:\\Users\\elyna\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Proyecto-2-Sistemas-Distribuidos\\Cosas Separadas\\RespaldoLocal\\");
-        //conectar("empresa.db", "C:\\Users\\elyna\\Documents\\Universidad de Talca\\2019-2\\Sistemas Distribuidos\\Proyecto-2-Sistemas-Distribuidos\\Cosas Separadas\\RespaldoLocal\\");
         
         if(hora >= HORA_RESPALDO && minutos >= MINUTO_RESPALDO) {
             crearRespaldo(calendario);

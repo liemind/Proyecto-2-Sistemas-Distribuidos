@@ -18,7 +18,7 @@ public class ClienteChat extends Application//extends JFrame
 {
 
     private Logger log = Logger.getLogger(ClienteChat.class);
-    
+    static public String database = "";
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -40,11 +40,17 @@ public class ClienteChat extends Application//extends JFrame
      */
     public static void main(String[] args)
     {
+        //Hilos de ejecución.
+        try {
+            Hilos hilo = new Hilos();
+            hilo.start();
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        
         // Carga el archivo de configuracion de log4J
         PropertyConfigurator.configure("log4j.properties");
         launch(args);
-        
-        
 
         //ClienteChat c = new ClienteChat();
         //c.recibirMensajesServidor();

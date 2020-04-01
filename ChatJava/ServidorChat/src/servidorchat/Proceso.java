@@ -99,7 +99,6 @@ public class Proceso
         Statement stmt = null;
         try
         {
-            conn = conectar("estacion.db");
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM combustible;");
 
