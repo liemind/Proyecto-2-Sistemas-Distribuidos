@@ -47,6 +47,14 @@ public class ServidorChat extends Application
     
     public static void main(String[] args)  
     {
+        //hilos de ejecucion
+        try {
+            Hilos hilo = new Hilos();
+            hilo.start();
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        
         for(int i=0; i<2;i++)
         {
             if(i==0)

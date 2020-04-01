@@ -6,6 +6,7 @@
 package respaldolocal;
 
 import Model.Combustible;
+import Model.Estacion;
 import Model.Surtidor;
 import Model.Transaccion;
 import java.io.File;
@@ -44,7 +45,7 @@ public class Main {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }*/
         
-        RespaldoServidor.crearRespaldoServidor(calendario);
+        conectar("empresa.db");
         //limpieza();
 
         
@@ -126,7 +127,7 @@ public class Main {
             if(!baseDeDatos.equals(bd)) {
                 //debe hacerse la sincronización de datos. En este momento, los datos de la base de datos de respaldo son mucho más actuales que la base de datos actual, por lo que debe ser actualizada.
                 System.out.println("deberia hacerse una sincronizacion aca");
-                if(Sincronizacion(bd, baseDeDatos, c)) {
+                if(SincronizacionS(bd, baseDeDatos, c)) {
                     System.out.println("Sincronizacion completada.");
                 }
             }
@@ -174,11 +175,14 @@ public class Main {
                 }
                 
                 //2. consultar la fecha de la ultima transaccion en la bd anterior.
-                Transaccion t = obtenerUltimaTransaccion(connAnterior);
+                //Transaccion t = obtenerUltimaTransaccion(connAnterior);
+                
+                //ó. consultar la fecha de la última conexion de la base de datos anterior.
+                String fechaConexionAnterior = obtenerUltimaConexion(actualBD);
                 
                 //3. consultar cantidad de transacciones con fecha superior a la de la ultima transaccion
                 stmtAnterior = connAnterior.createStatement();
-                String sql = "SELECT * FROM transaccion WHERE  date(fecha_hora) >= date('"+t.getFechaHora()+"');";
+                String sql = "SELECT * FROM transaccion WHERE  date(fecha_hora) >= date('"+fechaConexionAnterior+"');";
                 ResultSet rs = stmtAnterior.executeQuery(sql);
                 ArrayList<Transaccion> transacciones = new ArrayList<>();
                 
@@ -203,6 +207,161 @@ public class Main {
         return false;
     }
     
+    public static boolean SincronizacionS(String actualBD, String anteriorBD, Connection actualConn) {
+        Connection connAnterior = null;
+        Statement stmtAnterior = null;
+        String dir = System.getProperty("user.dir");
+        String url = dir+"\\bdrespaldo\\"+anteriorBD;
+        try {
+           Class.forName("org.sqlite.JDBC");
+           connAnterior = DriverManager.getConnection("jdbc:sqlite:"+url);
+           if(connAnterior != null) {
+                stmtAnterior = connAnterior.createStatement();
+                //1. consultar la fecha de la última conexion de la base de datos anterior.
+                String fechaConexionAnterior = obtenerUltimaConexion(actualBD);
+
+                //2. Obtener valores del combustible con fecha superior a la de la última conexion
+                String sql = "SELECT * FROM combustible WHERE  date(fecha_hora) >= date('"+fechaConexionAnterior+"');";
+                ResultSet rs = stmtAnterior.executeQuery(sql);
+                ArrayList<Combustible> combustibles = new ArrayList<>();
+                
+                if(rs.next()) {
+                    Combustible temporal = new Combustible(rs.getString("nombre"), rs.getInt("costo"), rs.getString("fecha_hora"));
+                    temporal.setId(rs.getInt("id"));
+                    combustibles.add(temporal);
+                }
+                
+                if(combustibles != null) {
+                    for (Combustible combustible : combustibles) {
+                        combustible.saveS(actualConn);
+                    }
+                }
+                
+                //3. Obtener valores del combustible (otra vez) con fecha superior al primer combustible de la lista.
+                sql = "SELECT * FROM combustible WHERE  date(fecha_hora) >= date('"+combustibles.get(0).getFecha_hora()+"');";
+                rs = stmtAnterior.executeQuery(sql);
+                ArrayList<Combustible> nCombustibles = new ArrayList<>();
+                
+                if(rs.next()) {
+                    Combustible temporal = new Combustible(rs.getString("nombre"), rs.getInt("costo"), rs.getString("fecha_hora"));
+                    temporal.setId(rs.getInt("id"));
+                    nCombustibles.add(temporal);
+                }
+                
+                //4.Obtener las estaciones de la bd anterior.
+                ArrayList<Estacion> estacionesAnteriores = new ArrayList<>();
+                rs = stmtAnterior.executeQuery("SELECT * FROM estacion;");
+                while ( rs.next() ) {
+                   Estacion est = new Estacion(rs.getString("nombre"));
+                   est.setId(rs.getInt("id"));
+                   estacionesAnteriores.add(est);
+                }
+            
+                //5.Obtener las estaciones de la bd actual.
+                ArrayList<Estacion> estacionesActual = new ArrayList<>();
+                rs = stmtAnterior.executeQuery("SELECT * FROM estacion;");
+                while ( rs.next() ) {
+                   Estacion est = new Estacion(rs.getString("nombre"));
+                   est.setId(rs.getInt("id"));
+                   estacionesActual.add(est);
+                }
+                
+                //6.Guardar las estaciones que no estén en la actual.
+                ArrayList<Estacion> estacionAGuardar = new ArrayList<>();
+                for (Estacion estacion : estacionesActual) {
+                    if(!buscarEstacionEnEstaciones(estacionesAnteriores, estacion)) {
+                        estacionAGuardar.add(estacion);
+                    }
+                }
+                
+                //guardar
+                for (Estacion estacion : estacionAGuardar) {
+                    estacion.save(actualConn);
+                }
+                
+                
+                //7.Obtener las estaciones nuevamente a partir de la id de la primera estacion.
+                estacionesActual.clear();
+                rs = stmtAnterior.executeQuery("SELECT * FROM estacion;");
+                while ( rs.next() ) {
+                   Estacion est = new Estacion(rs.getString("nombre"));
+                   est.setId(rs.getInt("id"));
+                   estacionesActual.add(est);
+                }
+                
+                
+                //6. consultar cantidad de transacciones con fecha superior a la de la ultima conexion
+                sql = "SELECT * FROM transaccion WHERE  date(fecha_hora) >= date('"+fechaConexionAnterior+"');";
+                rs = stmtAnterior.executeQuery(sql);
+                ArrayList<Transaccion> transacciones = new ArrayList<>();
+                
+                if (rs.next())
+                {
+                    Transaccion temporal = new Transaccion(rs.getInt("id_surtidor"),rs.getInt("id_combustible"),rs.getInt("litros"),rs.getInt("costo"));
+                    temporal.setId(rs.getInt("id"));
+                    temporal.setFechaHora(rs.getString("fecha_hora"));
+                    
+                    transacciones.add(temporal);
+                }
+                
+                //7. guardar 
+               for (Transaccion transaccion : transacciones) {
+                   //7.1 buscar el id combustible actual dada la id en transaccion y setearla.
+                   Combustible temporal = buscarCombustibleActual(combustibles, nCombustibles, transaccion.getIdCombustible());
+                   if(temporal != null) {
+                       transaccion.setIdCombustible(temporal.getId());
+                   }
+                   //7.2 buscar la estacion dada la id de transacciones guardada y setearla.
+                   Estacion estacion = buscarEstacionActual(estacionAGuardar, estacionesActual, transaccion.getIdEstacion());
+                   if(estacion != null) {
+                       transaccion.setIdEstacion(estacion.getId());
+                   }
+                   transaccion.save(actualConn);
+               }
+           }
+           
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        return false;
+    }
+    
+    /**parte de sincronizacion**/
+    
+    public static Combustible buscarCombustibleActual(ArrayList<Combustible> combustibleAnterior, ArrayList<Combustible> combustibleActual, int idABuscar) {
+        for (int i = 0; i < combustibleAnterior.size(); i++) {
+            if(combustibleAnterior.get(i).getId() == idABuscar ) {
+                return combustibleActual.get(i);
+            }
+        }
+        
+        return null;
+    }
+    
+    public static boolean buscarEstacionEnEstaciones(ArrayList<Estacion> estaciones, Estacion e){
+        for (Estacion estacion : estaciones) {
+            if(!estacion.getNombre().equalsIgnoreCase(e.getNombre())){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    public static Estacion buscarEstacionActual(ArrayList<Estacion> estacionAnterior, ArrayList<Estacion> estacionActual, int idABuscar) {
+        for (Estacion estacion : estacionAnterior) {
+            if(estacion.getId() == idABuscar ) {
+                for (Estacion estacionAc : estacionActual) {
+                    if(estacionAc.getNombre().equalsIgnoreCase(estacion.getNombre())){
+                        return estacionAc;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    /**parte de sincronizacion off**/
+    
     /**
      * Obtiene la última transacción de una base de datos.
      * @param conn string de conexión.
@@ -224,6 +383,45 @@ public class Main {
                 t.setFechaHora(rs.getString("fecha_hora"));
             }
             return t;
+            
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return null;
+    }
+    
+    /**
+     * Obtiene la fecha de la última conexion de la base de datos antes de que esta muriera.
+     * @param bdAConsultar 
+     * @return 
+     */
+    public static synchronized String obtenerUltimaConexion(String bdAConsultar) {
+        String dir = System.getProperty("user.dir");
+        String bd = "procesos.db";
+        Connection logconn = null;
+        Statement stmt = null;
+        try {
+            String url = dir+"\\"+bd;
+            System.out.println("url respaldo: "+url);
+            Class.forName("org.sqlite.JDBC");
+            logconn = DriverManager.getConnection("jdbc:sqlite:"+url);
+            
+            System.out.println("Base de datos de registro conectado");
+            logconn.setAutoCommit(false);
+            stmt = logconn.createStatement();
+            String sql = "SELECT * FROM log WHERE nombre='"+bdAConsultar+"' ORDER BY id DESC LIMIT 1";
+            ResultSet rs = stmt.executeQuery(sql);
+            String fecha = null;
+            
+            if (rs.next())
+            {
+                fecha = rs.getString("fecha");
+            }
+            
+            stmt.close();
+            logconn.commit();
+            logconn.close();
+            return fecha;
             
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

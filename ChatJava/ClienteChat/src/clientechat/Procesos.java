@@ -106,11 +106,13 @@ public class Procesos
                 }
                 
                 //2. consultar la fecha de la ultima transaccion en la bd anterior.
-                Transaccion t = obtenerUltimaTransaccion(connAnterior);
+                //Transaccion t = obtenerUltimaTransaccion(connAnterior);
+                //ó. consultar la fecha de la última conexion de la base de datos anterior.
+                String fechaConexionAnterior = obtenerUltimaConexion(actualBD);
                 
                 //3. consultar cantidad de transacciones con fecha superior a la de la ultima transaccion
                 stmtAnterior = connAnterior.createStatement();
-                String sql = "SELECT * FROM transaccion WHERE  date(fecha_hora) >= date('"+t.getFechaHora()+"');";
+                String sql = "SELECT * FROM transaccion WHERE  date(fecha_hora) >= date('"+fechaConexionAnterior+"');";
                 ResultSet rs = stmtAnterior.executeQuery(sql);
                 ArrayList<Transaccion> transacciones = new ArrayList<>();
                 
@@ -425,6 +427,46 @@ public class Procesos
     public static void guardarRegistroTransaccion(int id, int estado) {
         //DEBEMOS TERMINAR ESTO
     }
+    
+    /**
+     * Obtiene la fecha de la última conexion de la base de datos antes de que esta muriera.
+     * @param bdAConsultar 
+     * @return 
+     */
+    public static synchronized String obtenerUltimaConexion(String bdAConsultar) {
+        String dir = System.getProperty("user.dir");
+        String bd = "procesos.db";
+        Connection logconn = null;
+        Statement stmt = null;
+        try {
+            String url = dir+"\\"+bd;
+            System.out.println("url respaldo: "+url);
+            Class.forName("org.sqlite.JDBC");
+            logconn = DriverManager.getConnection("jdbc:sqlite:"+url);
+            
+            System.out.println("Base de datos de registro conectado");
+            logconn.setAutoCommit(false);
+            stmt = logconn.createStatement();
+            String sql = "SELECT * FROM log WHERE nombre='"+bdAConsultar+"' ORDER BY id DESC LIMIT 1";
+            ResultSet rs = stmt.executeQuery(sql);
+            String fecha = null;
+            
+            if (rs.next())
+            {
+                fecha = rs.getString("fecha");
+            }
+            
+            stmt.close();
+            logconn.commit();
+            logconn.close();
+            return fecha;
+            
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return null;
+    }
+    
     
     /***
      * FIN PROCESOS RELACIONADOS CON LA BD OCULTA

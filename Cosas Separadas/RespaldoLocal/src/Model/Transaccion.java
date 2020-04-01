@@ -84,6 +84,16 @@ public class Transaccion {
         return id;
     }
 
+    public int getIdEstacion() {
+        return idEstacion;
+    }
+
+    public void setIdEstacion(int idEstacion) {
+        this.idEstacion = idEstacion;
+    }
+    
+    
+
     /**
      * Actualiza en la base de datos el combustible del objeto. Las base de datos ya contienen un combustible previamente creado.
      * @param conn
