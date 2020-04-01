@@ -37,36 +37,15 @@ public class Main {
         // TODO code application logic here
         Calendar calendario = Calendar.getInstance();
         
-        try {
+        /*try {
             Hilos hilo = new Hilos();
             hilo.start();
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-        }
-        
-        //RespaldoCliente.crearRespaldoCliente(calendario);
-        //limpieza();
-        
-        /*
-        int hora, minutos;
-        String finalNBD;
-        Calendar calendario = Calendar.getInstance();
-        
-        hora =calendario.get(Calendar.HOUR_OF_DAY);
-        minutos = calendario.get(Calendar.MINUTE);
-        
-        
-        if(hora >= HORA_RESPALDO && minutos >= MINUTO_RESPALDO) {
-            crearRespaldo(calendario);
-            //Thread.sleep(30000);
-            
-        }else {
-            int finalMin = (60*HORA_RESPALDO)+MINUTO_RESPALDO;
-            int currentMin = (60*hora)+minutos;
-            int finalSleep = (finalMin-currentMin)*60000;
-            //sleep 
-            //sleep(finalSleep);
         }*/
+        
+        RespaldoServidor.crearRespaldoServidor(calendario);
+        //limpieza();
 
         
     }

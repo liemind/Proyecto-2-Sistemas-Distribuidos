@@ -12,7 +12,8 @@ import java.sql.Statement;
  *
  * @author Liemind
  */
-public class Transaccion { 
+public class Transaccion {
+    private int idEstacion;
     private int idSurtidor;
     private int idCombustible;
     private int litros;
@@ -21,6 +22,14 @@ public class Transaccion {
     private int id;
 
     public Transaccion(int idSurtidor, int idCombustible, int litros, int costo) {
+        this.idSurtidor = idSurtidor;
+        this.idCombustible = idCombustible;
+        this.litros = litros;
+        this.costo = costo;
+    }
+    
+    public Transaccion(int idEstacion, int idSurtidor, int idCombustible, int litros, int costo) {
+        this.idEstacion = idEstacion;
         this.idSurtidor = idSurtidor;
         this.idCombustible = idCombustible;
         this.litros = litros;
@@ -87,6 +96,23 @@ public class Transaccion {
             stmt = conn.createStatement();
             //guardar la transaccion
             stmt.executeUpdate("INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo, fecha_hora) VALUES ("+idSurtidor+", "+idCombustible+", "+litros+", "+costo+", '"+fechaHora+"' );" );
+            conn.commit();
+            stmt.close();
+            return true;
+        }
+        catch(Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+    }
+    
+    public synchronized boolean saveS(Connection conn) {
+        Statement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            //guardar la transaccion
+            stmt.executeUpdate("INSERT INTO transaccion (id_estacion, id_surtidor, id_combustible, litros, costo, fecha_hora) VALUES ("+idEstacion+","+idSurtidor+", "+idCombustible+", "+litros+", "+costo+", '"+fechaHora+"' );" );
             conn.commit();
             stmt.close();
             return true;

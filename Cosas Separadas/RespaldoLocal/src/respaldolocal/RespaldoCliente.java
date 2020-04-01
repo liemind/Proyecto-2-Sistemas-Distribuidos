@@ -76,9 +76,6 @@ public class RespaldoCliente {
         //Carpeta del usuario
         String dir = System.getProperty("user.dir");
         dir = dir+"\\bdrespaldo\\";
-        //bandera
-        System.out.println(dir);
-        //end bandera
         
         Connection conn2 = null; //coneccion a la nueva bd
         String finalNBD = "estacion"; //nombre de la base de datos
@@ -220,6 +217,7 @@ public class RespaldoCliente {
                 }
             }
             
+            conn.close();
             conn2.close();
             stmt.close();
             stmt2.close();
