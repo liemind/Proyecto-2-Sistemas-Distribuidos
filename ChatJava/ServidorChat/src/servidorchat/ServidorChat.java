@@ -68,5 +68,6 @@ public class ServidorChat extends Application
                 launch(args);
             }
         }
+        
     }
 }

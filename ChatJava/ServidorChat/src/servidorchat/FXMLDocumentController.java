@@ -11,12 +11,17 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
@@ -39,6 +44,19 @@ public class FXMLDocumentController implements Initializable
     private TextField diesel;
     @FXML
     private TextField kerosene;
+    @FXML
+    private ComboBox informe;
+    @FXML
+    private ComboBox list;
+    @FXML
+    private Label fechaH1;
+    @FXML
+    private Label nombre;
+    @FXML
+    private Label fecha;
+    @FXML
+    private Label trans;
+    
 
     private Socket socket;
     private int puerto;
@@ -47,10 +65,13 @@ public class FXMLDocumentController implements Initializable
     private Logger log;
     private ConexionServidor conexion;
     private Proceso proceso;
+   
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        
         // TODO
         this.log = Logger.getLogger(FXMLDocumentController.class);
         this.host = "localhost";
@@ -84,10 +105,83 @@ public class FXMLDocumentController implements Initializable
         noventaysiete.setText(Integer.toString(cc.get(size-2).getCosto()));
         diesel.setText(Integer.toString(cc.get(size-1).getCosto()));
         kerosene.setText(Integer.toString(cc.get(size).getCosto()));
+        InformeCombobox();
         
+        nombre.setText("");
+        fecha.setText("");
+        trans.setText("");
         /*Clase encargada de realizar las consultas a la base de datos*/
         this.proceso = new Proceso();
     }
+    
+    @FXML
+    public void obtenerInforme() {
+        nombre.setText("");
+        fecha.setText("");
+        trans.setText("");
+        list.getItems().clear();
+        String opcion = (String) informe.getValue();
+        ArrayList<String> arr = new ArrayList<>();
+        if(!opcion.isEmpty()) {
+            if(opcion.equals("Transacciones anuales por sucursal")) {
+                arr = Proceso.ObtenerTransaccionesAnualesPorSucursal();
+                fechaH1.setText("Año");
+                
+                //lista.getItems().add("Nombre Sucursal (año):  <Cantidad de Transacciones>");
+                if(arr != null) {
+                    for (String string : arr) {
+                        list.getItems().add(string);
+                    }
+                }
+                
+            }else {
+                arr = Proceso.filtrarPorMesYAño();
+                fechaH1.setText("Mes/Año");
+                
+                if(arr != null) {
+                    for (String string : arr) {
+                        list.getItems().add(string);
+                    }
+                }
+            }
+        }
+    }
+    
+    public void mostrarInforme() {
+        String opcion = (String) list.getValue();
+        nombre.setText("");
+        fecha.setText("");
+        trans.setText("");
+        
+        if(!opcion.isEmpty()) {
+            String[] parts = opcion.split(",");
+            System.out.println("parts: "+parts.length);
+            if(parts.length == 4) {
+                nombre.setText(parts[0]);
+                fecha.setText(parts[1]+"/"+parts[2]);
+                trans.setText(parts[3]);
+            } else {
+                nombre.setText(parts[0]);
+                fecha.setText(parts[1]);
+                trans.setText(parts[2]);
+            }
+        }
+        
+        
+        
+    }
+    
+    /**
+     * Llena el surtidor en la ventana.
+     */
+    private void InformeCombobox()
+    {
+        //surtidor = new ComboBox();
+        this.informe.getItems().add("Transacciones anuales por sucursal");
+        this.informe.getItems().add("Transacciones por mes y año");
+
+    }
+    
     
     /**
      * Este metodo se encarga de actualizar los costos de los combustibles  y de enviarlo a la clase ConexionServidor para que este se encargue de enviar el mensaje 

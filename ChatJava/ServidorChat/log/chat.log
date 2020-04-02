@@ -294,3 +294,218 @@
 2020-03-30 01:18:33,087 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
 2020-03-30 01:18:49,098 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
 2020-03-30 01:18:49,101 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:40:21,560 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:40:21,849 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-01 22:40:21,855 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:40:21,857 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:42:23,356 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:42:23,610 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-01 22:42:23,620 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:42:23,622 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:42:32,451 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:42:32,710 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:42:44,929 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:42:45,189 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:55:01,358 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:55:01,621 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-01 22:55:01,628 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:55:01,630 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:55:09,476 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:55:09,746 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:55:57,891 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:55:58,066 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:58:48,406 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-01 22:58:48,654 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-01 22:58:48,662 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-01 22:58:48,663 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 01:47:02,571 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 01:48:32,288 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 01:51:25,220 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 01:51:25,645 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 01:51:25,652 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 01:51:25,653 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:19:40,747 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:19:41,044 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:19:41,054 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:19:41,056 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:20:32,574 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:20:32,875 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:20:32,885 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:20:32,886 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:46:55,560 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:46:55,866 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:46:55,876 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:46:55,878 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:47:50,772 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:47:51,119 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:47:51,131 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:47:51,133 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:49:21,187 [Thread-3] ERROR servidorchat.ServidorChat - Error: Address already in use: JVM_Bind
+2020-04-02 02:49:21,540 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:49:21,549 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:49:21,719 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:49:37,118 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /127.0.0.1 desconectado.
+2020-04-02 02:49:41,257 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:49:41,562 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:49:41,571 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:49:41,573 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:50:36,363 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:50:36,656 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:50:36,664 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:50:36,665 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:51:47,637 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:51:47,993 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:51:48,001 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:51:48,003 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:52:49,000 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:52:49,301 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:52:49,310 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:52:49,311 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:53:08,027 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:53:08,386 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:53:08,394 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:53:08,395 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:55:36,301 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:55:36,638 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:55:36,645 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:55:36,646 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:57:15,562 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:57:15,888 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:57:15,895 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:57:15,897 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:58:21,804 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 02:58:22,104 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 02:58:22,113 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 02:58:22,114 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:38:38,014 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:38:38,336 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:38:38,345 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:38:38,346 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:39:05,836 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:39:06,127 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:39:06,138 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:39:06,139 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:40:26,822 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:40:27,114 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:40:27,122 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:40:27,123 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:41:27,062 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:41:27,330 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /25.6.57.186 desconectado.
+2020-04-02 03:43:06,545 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:43:06,842 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:43:06,852 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:43:06,853 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:43:14,702 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:43:14,968 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /25.6.57.186 desconectado.
+2020-04-02 03:46:11,673 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:46:11,976 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:46:11,987 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:46:11,989 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:46:18,313 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:46:18,643 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /25.6.57.186 desconectado.
+2020-04-02 03:46:48,752 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:46:49,077 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:46:49,087 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:46:49,090 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:47:04,489 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:47:54,567 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /25.6.57.186 desconectado.
+2020-04-02 03:49:08,732 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:49:09,015 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:49:09,024 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:49:09,025 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:49:22,542 [Thread-4] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:49:22,949 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:49:22,959 [Thread-4] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:49:22,962 [Thread-4] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:49:29,213 [Thread-4] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:50:38,266 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /25.6.57.186 desconectado.
+2020-04-02 03:51:45,851 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:51:46,125 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:51:46,132 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:51:46,133 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:51:54,470 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:51:54,808 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:51:54,820 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:51:54,822 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:51:56,141 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:53:13,326 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /25.6.57.186 desconectado.
+2020-04-02 03:54:11,041 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:54:11,390 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:54:11,400 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:54:11,402 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:54:21,362 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:56:02,438 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:56:02,787 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 03:56:02,797 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 03:56:02,798 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 03:56:17,445 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /25.6.57.186 conectado.
+2020-04-02 03:56:52,259 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:00:45,929 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:00:46,217 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:00:46,225 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:00:46,227 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:09:24,133 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:09:24,424 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:09:24,431 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:09:24,433 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:10:20,481 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:10:20,755 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:10:20,764 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:10:20,765 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:12:17,427 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:12:17,702 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:12:17,712 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:12:17,714 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:18:09,347 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:18:09,598 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:18:09,608 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:18:09,610 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:20:49,370 [Thread-3] ERROR servidorchat.ServidorChat - Error: Address already in use: JVM_Bind
+2020-04-02 04:20:49,671 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:20:49,679 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:20:49,868 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:20:53,782 [Thread-7] INFO  servidorchat.ConexionCliente - Cliente con la IP /127.0.0.1 desconectado.
+2020-04-02 04:20:59,131 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:20:59,398 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:20:59,408 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:20:59,410 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:22:11,823 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:22:12,122 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:22:12,132 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:22:12,134 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:41:22,995 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:41:23,270 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:41:23,279 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:41:23,281 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:56:41,023 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 04:56:41,362 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 04:56:41,370 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 04:56:41,371 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:04:39,223 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:04:39,494 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:04:39,504 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:04:39,505 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:05:55,001 [Thread-3] ERROR servidorchat.ServidorChat - Error: Address already in use: JVM_Bind
+2020-04-02 05:05:55,293 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:05:55,301 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:05:55,474 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:07:42,312 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:07:42,615 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:07:42,651 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:07:42,653 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:12:00,721 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:12:01,033 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:12:01,068 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:12:01,071 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:13:36,881 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:13:37,282 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:13:37,289 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:13:37,291 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:14:29,025 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:14:29,421 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:14:29,429 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:14:29,430 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:15:28,704 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:15:28,987 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:15:28,995 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:15:28,997 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.

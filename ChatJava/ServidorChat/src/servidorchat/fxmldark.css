@@ -188,3 +188,7 @@ ArbitratyBackground #1a1a1a
 .h1 {
     -fx-font-size: 18px; 
 }
+
+.list{
+    -fx-background-color: #1a1a1a;
+}

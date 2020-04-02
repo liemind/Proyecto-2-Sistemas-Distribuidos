@@ -194,6 +194,9 @@ public class Proceso
                    }
                    transaccion.save(actualConn);
                }
+               
+               connAnterior.close();
+               stmtAnterior.close();
            }
            
         } catch (Exception e) {
@@ -221,8 +224,7 @@ public class Proceso
             }
         }
         return false;
-    }
-    
+    } 
     
     public static Estacion buscarEstacionActual(ArrayList<Estacion> estacionAnterior, ArrayList<Estacion> estacionActual, int idABuscar) {
         for (Estacion estacion : estacionAnterior) {
@@ -238,7 +240,64 @@ public class Proceso
     }
     /**parte de sincronizacion off**/
     
-
+    public static ArrayList<String> ObtenerTransaccionesAnualesPorSucursal() {
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = conectar("empresa.db");
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            String sql = "SELECT estacion.nombre as nombre, strftime('%Y', transaccion.fecha_hora) as año, count(strftime('%Y', transaccion.fecha_hora)) as cantTransacciones from transaccion, estacion WHERE transaccion.id_estacion = estacion.id GROUP by transaccion.id_estacion, strftime('%Y', fecha_hora);";
+            ResultSet rs = stmt.executeQuery(sql);
+             ArrayList<String> estacion = new ArrayList<>();
+            
+            while (rs.next())
+            {
+                String temporal = rs.getString("nombre")+","+rs.getInt("año")+","+rs.getInt("cantTransacciones");
+                estacion.add(temporal);
+                System.out.println(temporal);
+            }
+            
+            stmt.close();
+            conn.commit();
+            conn.close();
+            return estacion;
+            
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return null;
+    }
+    
+    public static ArrayList<String> filtrarPorMesYAño() {
+        Connection conn = null;
+        Statement stmt = null;
+        
+        try {
+            conn = conectar("empresa.db");
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            String sql = "SELECT estacion.nombre as nombre, strftime('%Y', transaccion.fecha_hora) as año, strftime('%m', transaccion.fecha_hora) as mes, count(strftime('%m', transaccion.fecha_hora)) as cantTransaciones FROM transaccion, estacion WHERE transaccion.id_estacion = estacion.id GROUP BY id_estacion, strftime('%m', fecha_hora);";
+            ResultSet rs = stmt.executeQuery(sql);
+            ArrayList<String> estacion = new ArrayList<>();
+            
+            while (rs.next())
+            {
+                String temporal = rs.getString("nombre")+","+rs.getInt("mes")+","+rs.getInt("año")+","+rs.getInt("cantTransaciones");
+                estacion.add(temporal);
+                System.out.println(temporal);
+            }
+            
+            stmt.close();
+            conn.commit();
+            conn.close();
+            return estacion;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return null;
+    }
+    
     /**
      * Obtiene de la base de datos los combustibles del servidor.
      *
@@ -264,6 +323,7 @@ public class Proceso
             //end bandera
             rs.close();
             stmt.close();
+            conn.close();
             return combustibles;
 
         }
@@ -316,7 +376,6 @@ public class Proceso
         try
         {
             conn = conectar("empresa.db");
-            conn.setAutoCommit(false);
             stmt = conn.createStatement();
             //consultar estacion
 
@@ -329,7 +388,7 @@ public class Proceso
             System.out.println("la id de la estacion creada es: " + estacion.getId());
 
             stmt.close();
-            conn.commit();
+            conn.close();
         }
         catch (SQLException e)
         {
@@ -337,6 +396,7 @@ public class Proceso
         }
         return estacion;
     }
+    
     
     /**
      * Verifica la existencia de una estacion en particular
@@ -366,6 +426,7 @@ public class Proceso
             rs.close();
             stmt.close();
             conn.commit();
+            conn.close();
             if (cantIP == 0)
             {
                 return false;
@@ -405,6 +466,7 @@ public class Proceso
             rs.close();
             stmt.close();
             conn.commit();
+            conn.close();
         }
         catch (Exception e)
         {
@@ -438,9 +500,20 @@ public class Proceso
             //end bandera
 
             stmt = conn.createStatement();
-            String sql = "INSERT INTO transaccion (id_estacion, id_surtidor, id_combustible, litros, costo, fecha_hora) VALUES ( '" + ip + "', " + idSurtidor + ", " + idCombustible + ", " + litros + ", " + costo + ", '" + fecha_hora + "' );";
+            
+            String sql;
+            sql = "select id from estacion where nombre = '" + ip +"';";
+            int idSucursal = 0;
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next())
+            {
+                idSucursal = rs.getInt("id");
+            }
+
+            sql = "INSERT INTO transaccion (id_estacion, id_surtidor, id_combustible, litros, costo, fecha_hora) VALUES ( " + idSucursal + ", " + idSurtidor + ", " + idCombustible + ", " + litros + ", " + costo + ", '" + fecha_hora + "' );";
+           
             stmt.execute(sql);
-            ResultSet rs = stmt.executeQuery("SELECT id FROM transaccion ORDER BY id DESC LIMIT 1;");
+            rs = stmt.executeQuery("SELECT id FROM transaccion ORDER BY id DESC LIMIT 1;");
 
             if (rs.next())
             {
@@ -449,6 +522,7 @@ public class Proceso
             System.out.println("Id transaccion:  " + idTransaccion);
             stmt.close();
             conn.commit();
+            conn.close();
             //bandera
             System.out.println("Crea la transaccion");
             //end bandera
@@ -491,7 +565,6 @@ public class Proceso
         
         try {
             String url = dir+"\\"+bd;
-            System.out.println("url respaldo: "+url);
             Class.forName("org.sqlite.JDBC");
             logconn = DriverManager.getConnection("jdbc:sqlite:"+url);
             
@@ -613,7 +686,6 @@ public class Proceso
 
             while ( rs.next() ) {
                nombre = rs.getString("nombre");
-                System.out.println("N: "+nombre);
             }
            
            stmt.close();
@@ -743,6 +815,7 @@ public class Proceso
         if(llenarDatos(conn2)) {
             System.out.println("Datos respaldados");
         }
+        
     }
     
     /**

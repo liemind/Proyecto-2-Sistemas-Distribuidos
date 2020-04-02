@@ -71,6 +71,7 @@ public class PuenteConexiones  extends Thread
                     cc.start();
                     
                     String ip =  socket.getInetAddress().toString();
+                    System.out.println("ip: " +ip);
                     Estacion estacion = Proceso.buscarEstacion(ip);
                     if(estacion==null)
                     {
