@@ -387,7 +387,7 @@
 									"containerExtending": false,
 									"left": 96,
 									"top": 101,
-									"width": 154.9599609375,
+									"width": 173.03173828125,
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
@@ -426,7 +426,7 @@
 											"containerExtending": false,
 											"left": 101,
 											"top": 124,
-											"width": 144.9599609375,
+											"width": 163.03173828125,
 											"height": 13,
 											"autoResize": false
 										},
@@ -450,7 +450,7 @@
 											"containerExtending": false,
 											"left": 101,
 											"top": 139,
-											"width": 144.9599609375,
+											"width": 163.03173828125,
 											"height": 13,
 											"autoResize": false
 										},
@@ -474,7 +474,7 @@
 											"containerExtending": false,
 											"left": 101,
 											"top": 154,
-											"width": 144.9599609375,
+											"width": 163.03173828125,
 											"height": 13,
 											"autoResize": false
 										}
@@ -490,7 +490,7 @@
 									"containerExtending": false,
 									"left": 96,
 									"top": 119,
-									"width": 154.9599609375,
+									"width": 173.03173828125,
 									"height": 53,
 									"autoResize": false
 								}
@@ -506,8 +506,8 @@
 							"containerExtending": false,
 							"left": 96,
 							"top": 96,
-							"width": 154.9599609375,
-							"height": 76,
+							"width": 173.03173828125,
+							"height": 91,
 							"autoResize": false,
 							"nameLabel": {
 								"$ref": "AAAAAAFwfUK3BB0mFNA="
@@ -1154,7 +1154,7 @@
 							"left": 88,
 							"top": 232,
 							"width": 196.1181640625,
-							"height": 106,
+							"height": 121,
 							"autoResize": false,
 							"nameLabel": {
 								"$ref": "AAAAAAFwfUm8HR4LUgc="
@@ -1320,7 +1320,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 189,
-									"top": 194,
+									"top": 202,
 									"width": 0,
 									"height": 13,
 									"autoResize": false,
@@ -1351,7 +1351,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 190,
-									"top": 190,
+									"top": 205,
 									"width": 0,
 									"height": 13,
 									"autoResize": false,
@@ -1414,7 +1414,7 @@
 								"$ref": "AAAAAAFwfUK3BB0lDU8="
 							},
 							"lineStyle": 2,
-							"points": "175:171;175:232",
+							"points": "175:186;175:232",
 							"nameLabel": {
 								"$ref": "AAAAAAFwfUxb9R5Y6Yo="
 							},

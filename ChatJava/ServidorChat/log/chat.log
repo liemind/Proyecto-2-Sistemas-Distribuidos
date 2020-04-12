@@ -509,3 +509,57 @@
 2020-04-02 05:15:28,987 [JavaFX Application Thread] INFO  servidorchat.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
 2020-04-02 05:15:28,995 [Thread-3] INFO  servidorchat.ServidorChat - Cliente con la IP /127.0.0.1 conectado.
 2020-04-02 05:15:28,997 [Thread-3] INFO  servidorchat.ServidorChat - Servidor a la espera de conexiones.
+2020-04-02 05:27:37,609 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 05:27:37,933 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 05:27:37,943 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:27:37,944 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 05:27:44,939 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 05:27:45,196 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:23:59,231 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:23:59,608 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 17:23:59,617 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 17:23:59,618 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:25:33,286 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:25:33,586 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 17:25:33,597 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 17:25:33,599 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:25:55,594 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:25:56,154 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 17:25:56,177 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 17:25:56,179 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:26:44,203 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:26:44,624 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 17:26:44,631 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 17:26:44,633 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:28:04,774 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:28:05,238 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 17:28:05,247 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 17:28:05,248 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:29:54,009 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 17:29:54,484 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 17:29:54,492 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 17:29:54,495 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 18:40:47,307 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 18:40:47,574 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 18:40:47,580 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 18:40:47,581 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 18:49:35,998 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 18:49:36,297 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 18:49:36,372 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 18:49:36,373 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 18:50:53,695 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 18:50:54,066 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 18:50:54,071 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 18:50:54,073 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 19:15:08,889 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 19:15:09,168 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 19:15:09,178 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 19:15:09,179 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 19:16:44,651 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 19:16:45,026 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 19:16:45,033 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 19:16:45,036 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 19:17:52,076 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
+2020-04-02 19:17:52,347 [JavaFX Application Thread] INFO  empresa.FXMLDocumentController - Quieres conectarte a localhost en el puerto 1234 con el nombre de ususario: Servidor.
+2020-04-02 19:17:52,357 [Thread-3] INFO  empresa.Main - Cliente con la IP /127.0.0.1 conectado.
+2020-04-02 19:17:52,358 [Thread-3] INFO  empresa.Main - Servidor a la espera de conexiones.
