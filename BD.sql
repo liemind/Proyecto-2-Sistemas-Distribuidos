@@ -3,6 +3,12 @@ CREATE DATABASE procesos;
 CREATE TABLE log(
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    nombre TEXT NOT NULL,
-   proceso INTEGER NOT NULL,
    fecha TEXT NOT NULL
+);
+
+CREATE TABLE transacciones_enviadas(
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   id_transaccion INTEGER NOT NULL,
+   nombre TEXT NOT NULL,
+   envio INTEGER NOT NULL
 );

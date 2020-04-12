@@ -12,14 +12,24 @@ import java.sql.Statement;
  *
  * @author Liemind
  */
-public class Transaccion { 
+public class Transaccion {
+    private int idEstacion;
     private int idSurtidor;
     private int idCombustible;
     private int litros;
     private int costo;
+    private String fechaHora;
     private int id;
 
     public Transaccion(int idSurtidor, int idCombustible, int litros, int costo) {
+        this.idSurtidor = idSurtidor;
+        this.idCombustible = idCombustible;
+        this.litros = litros;
+        this.costo = costo;
+    }
+    
+    public Transaccion(int idEstacion, int idSurtidor, int idCombustible, int litros, int costo) {
+        this.idEstacion = idEstacion;
         this.idSurtidor = idSurtidor;
         this.idCombustible = idCombustible;
         this.litros = litros;
@@ -57,9 +67,14 @@ public class Transaccion {
     public void setCosto(int costo) {
         this.costo = costo;
     }
-    
-    
 
+    public String getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(String fechaHora) {
+        this.fechaHora = fechaHora;
+    }
     
     public synchronized void setId(int i) {
         this.id = i;
@@ -69,9 +84,19 @@ public class Transaccion {
         return id;
     }
 
+    public int getIdEstacion() {
+        return idEstacion;
+    }
+
+    public void setIdEstacion(int idEstacion) {
+        this.idEstacion = idEstacion;
+    }
+    
+    
+
     /**
      * Actualiza en la base de datos el combustible del objeto. Las base de datos ya contienen un combustible previamente creado.
-     * @param conn CLIENTE
+     * @param conn
      * @return
      */
     public synchronized boolean save(Connection conn) {
@@ -80,7 +105,7 @@ public class Transaccion {
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
             //guardar la transaccion
-            stmt.executeUpdate("INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo) VALUES ("+idSurtidor+", "+idCombustible+", "+litros+", "+costo+" );" );
+            stmt.executeUpdate("INSERT INTO transaccion (id_surtidor, id_combustible, litros, costo, fecha_hora) VALUES ("+idSurtidor+", "+idCombustible+", "+litros+", "+costo+", '"+fechaHora+"' );" );
             conn.commit();
             stmt.close();
             return true;
@@ -90,4 +115,22 @@ public class Transaccion {
             return false;
         }
     }
+    
+    public synchronized boolean saveS(Connection conn) {
+        Statement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            //guardar la transaccion
+            stmt.executeUpdate("INSERT INTO transaccion (id_estacion, id_surtidor, id_combustible, litros, costo, fecha_hora) VALUES ("+idEstacion+","+idSurtidor+", "+idCombustible+", "+litros+", "+costo+", '"+fechaHora+"' );" );
+            conn.commit();
+            stmt.close();
+            return true;
+        }
+        catch(Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+    }
+
 }
